@@ -7,28 +7,48 @@ class ImgComponent extends HTMLElement {
         const className = this.getAttribute('class-name') || 'default-class';
         wrapper.classList.add(className);
 
- 
         const image = document.createElement('img');
         const imgSrc = this.getAttribute('src') || 'default.jpg'; 
         image.setAttribute('src', imgSrc);
         image.alt = 'Image component'; 
 
-
         const imgBg = document.createElement('div');
         imgBg.classList.add('imageboxgradient');
 
+        const titleParagraphText = this.getAttribute('titlePargraph');
+        const titleParagraph = titleParagraphText ? document.createElement('p') : null;
+        if (titleParagraph) {
+            titleParagraph.classList.add('titleParagraphText');
+            titleParagraph.textContent = titleParagraphText;
+        }
+
+        const titleText = this.getAttribute('title');
+        const title = titleText ? document.createElement('h1') : null;
+        if (title) {
+            title.classList.add('titleText');
+            title.textContent = titleText;
+        }
+
+        const paragraphText = this.getAttribute('paragraph');
+        const paragraph = paragraphText ? document.createElement('h3') : null;
+        if (paragraph) {
+            paragraph.classList.add('paragraph');
+            paragraph.textContent = paragraphText;
+        }
 
         wrapper.append(image, imgBg);
-
+        if (titleParagraph) wrapper.appendChild(titleParagraph);
+        if (title) wrapper.appendChild(title);
+        if (paragraph) wrapper.appendChild(paragraph);
 
         this.shadowRoot.appendChild(wrapper);
 
         const style = document.createElement('style');
         style.textContent = `
-              img {
+            img {
                 width: 90%;
                 height: auto;
-                max-height:90vh;
+                max-height: 90vh;
                 background-repeat: no-repeat;
                 position: relative;
                 object-fit: cover;
@@ -43,15 +63,52 @@ class ImgComponent extends HTMLElement {
                 background-image: linear-gradient(rgba(17, 5, 44, 0), rgba(17, 5, 44, .82) 47%, rgba(17, 5, 44, .91) 59%, rgba(17, 5, 44, .94) 66%, rgba(17, 5, 44, .98) 75%, #11052c 82%);
                 border-radius: 30px;
             }
+              .paragraph {
+                position: absolute;
+                bottom: -6rem;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                text-align: center;
+                color: white;
+                margin: 0;
+                width:90%
+            }
+                .titleText{
+                font-size: 2rem;
+                overflow:visibel;
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                text-align: center;
+                color: white;
+                margin: 0;
+                width:90%;
+                
+                }
+                .titleParagraphText{
+                position: absolute;
+                bottom: 3rem;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                text-align: center;
+                color: #00c7ff;
+                margin-bottom: 0;
+                width:90%;
+                font-size: 1.1rem;
+                
+                }
+
         `;
         this.shadowRoot.appendChild(style);
-
-
     }
 }
 
-
 customElements.define('image-component', ImgComponent);
+
 
 
 
@@ -60,32 +117,47 @@ class VideoCell extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
 
-
         const wrapper = document.createElement('div');
         const className = this.getAttribute('class-name') || 'default-class';
         wrapper.classList.add(className);
 
-        // Create and configure the video element
         const video = document.createElement('video');
-        const videoSrc = this.getAttribute('video-src') || 'default.mp4'; 
-        const posterSrc = this.getAttribute('poster-src') || 'default.jpg'; 
-        
+        const videoSrc = this.getAttribute('video-src') || 'default.mp4';
+        const posterSrc = this.getAttribute('poster-src') || 'default.jpg';
 
         video.setAttribute('autoplay', '');
         video.setAttribute('loop', '');
-        video.setAttribute('muted', '');         
-        video.setAttribute('playsinline', ''); 
-
-
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
 
         const source = document.createElement('source');
         source.setAttribute('src', videoSrc);
-        source.setAttribute('type', 'video/mp4'); 
-
+        source.setAttribute('type', 'video/mp4');
         video.appendChild(source);
+
+        const imgOverlay = document.createElement('img');
+        imgOverlay.classList.add('overlay');
+        imgOverlay.setAttribute('src', posterSrc);
+        imgOverlay.setAttribute('alt', 'Video Overlay');
+
+        const logoSrc = this.getAttribute('logo-src');
+        const logo = logoSrc ? document.createElement('img') : null;
+        if (logo) {
+            logo.classList.add('logo');
+            logo.setAttribute('src', logoSrc);
+        }
+
+        const companyNameText = this.getAttribute('company-name');
+        const companyName = companyNameText ? document.createElement('h2') : null;
+        if (companyName) {
+            companyName.classList.add('companyName');
+            companyName.textContent = companyNameText;
+        }
+
         const imgBg = document.createElement('div');
         imgBg.classList.add('imageboxgradient');
-        wrapper.append(video, imgBg);
+
+        wrapper.append(video, imgBg, logo, companyName, imgOverlay);
         this.shadowRoot.appendChild(wrapper);
 
         const style = document.createElement('style');
@@ -93,11 +165,15 @@ class VideoCell extends HTMLElement {
             video {
                 width: 90%;
                 height: 100%;
-                max-height:100vh;
-                object-fit: cover; /* Ensure video covers the space without overflow */
-                z-index: -1; /* Keep the video on top */
+                max-height: 100vh;
+                object-fit: cover;
+                z-index: 1;
                 cursor: pointer;
                 border-radius: 30px;
+                position: relative;
+            }
+            .videoComponenthover video {
+                cursor: auto;
             }
             .imageboxgradient {
                 position: absolute;
@@ -106,25 +182,72 @@ class VideoCell extends HTMLElement {
                 right: 0;
                 height: 20%;
                 background-image: linear-gradient(rgba(17, 5, 44, 0), rgba(17, 5, 44, .82) 47%, rgba(17, 5, 44, .91) 59%, rgba(17, 5, 44, .94) 66%, rgba(17, 5, 44, .98) 75%, #11052c 82%);
-                z-index: 2; /* Ensure the gradient is on top of the video */
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-                }
+                z-index: 9;
+                border-bottom-right-radius: 30px;
+            }
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 90%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                z-index: 3;
+                border-radius: 30px;
+                pointer-events: none; 
+            }
+            .logo {
+                position: absolute;
+                width:40%;
+                height:20%;
+                top: 10px;
+                left: 10px;
+                z-index: 9;
+            }
+            .companyName {
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                text-align: center;
+                color: white;
+                margin: 0;
+            }
         `;
         this.shadowRoot.appendChild(style);
-        video.addEventListener('click', () => {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
+
+        const handleEvent = (event) => {
+            if (event.type === 'mouseover' || event.type === 'click') {
+                if (video.paused) {
+                    video.play();
+                    imgOverlay.style.display = 'none'; 
+                }
+            } else if (event.type === 'mouseout') {
+                if (!video.paused) {
+                    video.pause();
+                    imgOverlay.style.display = 'block';
+                }
             }
-        });
-}
+        };
 
-}
+        const eventType = className === "videoComponenthover" ? "mouseover" : "click";
+        video.addEventListener(eventType, handleEvent);
 
+        if (className === "videoComponenthover") {
+            video.addEventListener("mouseout", handleEvent);
+        }
+
+        if (video.paused) {
+            imgOverlay.style.display = 'block'; 
+        }
+    }
+}
 
 customElements.define('video-cell', VideoCell);
+
+
 
 class Testside extends HTMLElement {
     constructor() {
@@ -203,7 +326,7 @@ class VideoBarTitle  extends HTMLElement{
                 display: flex;
                 margin: 16px;
                 align-items: center;
-    justify-content: center;
+                justify-content: center;
             }
             .titleParagraph {
                 font-size: 1.4rem;

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
 </head>
-<body >
+
+<body>
     <header>
         <nav>
 
@@ -14,36 +16,33 @@
     </header>
     <main>
         <section class="home">
-            <div class="homeContiner" >
+            <div class="homeContiner">
                 <div calss="textContiner">
                     <p>The next social content agency </p>
-                    <h1>Creators of  
+                    <h1>Creators of
                         <br>
-                       <span> social content</span> 
+                        <span> social content</span>
                     </h1>
                 </div>
-               <div class="videoComponent">
-                <video-cell class-name="videoComponent" video-src="./asset/homevid.mp4" ></video-cell>
-                
-               </div>
-                <div>
-                <div class="imageComponent">
-                        <image-component class-name="imageComponent"  src="./asset/home.jpg"></image-component>
-                </div>
-                <div>
-                </div>
+                <div class="videoComponent">
+                    <video-cell class-name="videoComponent" video-src="./asset/homevid.mp4"
+                        poster-src=".\asset\posterimg.jpg"></video-cell>
 
-            </div>
-        </section 
-        <section>
+                </div>
+                <div>
+                    <div class="imageComponent">
+                        <image-component class-name="imageComponent" src="./asset/home.jpg"></image-component>
+                    </div>
+                    <div>
+                    </div>
+
+                </div>
+        </section <section>
         </section>
         <section class="section2">
-            <image-component id="imageComponentSide" class-name="imageComponent1"  src="./asset/key.webp"></image-component>
-            <test-side 
-                id="testComponentSide"
-                class-name="test-side"
-                titleTextPargraph="" 
-                titleText="Consistentie = key" 
+            <image-component id="imageComponentSide" class-name="imageComponent1"
+                src="./asset/key.webp"></image-component>
+            <test-side id="testComponentSide" class-name="test-side" titleTextPargraph="" titleText="Consistentie = key"
                 descriptionText='[
                     "Continu online zichtbaar zijn. Eigenlijk is het een must, dat weet jij ook. Maar het is ook een vak apart. Waar haal je de tijd, inspiratie en skills vandaan om content te maken die écht gezien wordt? Hoe haal je de maximale waarde uit social media met de inzet van goede foto’s, video’s en campagnes? Op welke kanalen moet je eigenlijk aanwezig zijn?",
                     "Laat dat gewoon aan ons over, zodat jij je kunt focussen op waar jij goed in bent. We maken unieke en oprechte visuele ‘snacks’ voor jouw doelgroep. Snackable content die past bij wie jij bent. En die is zó goed, dat men blijft terugkomen voor meer!"
@@ -51,49 +50,83 @@
             </test-side>
         </section>
         <section class="videobar">
-            <video-bar-title titleTextPargraph="Wij creëerden deze" titleText="Social content" ></video-bar-title>
+            <video-bar-title titleTextPargraph="Wij creëerden deze" titleText="Social content"></video-bar-title>
             <div class="videosContiner">
-                
-                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/v_1.mp4" ></video-cell>
-                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/v2_3.mp4" ></video-cell>
-                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/v2_4.mp4" ></video-cell>
-                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/v2.mp4" ></video-cell>
-                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/s2_2.mp4" ></video-cell>
+
+                <video-cell class="videoComponent1" class-name="videoComponenthover" video-src="./asset/videos/v2.mp4"
+                    poster-src=".\asset\videoOverlayimage\HofVanEckBerge.jpg" logo-src=""
+                    company-name="Hof van Eckbrege"></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponenthover"
+                    video-src="./asset/videos/charlies.mp4"
+                    poster-src=".\asset\videoOverlayimage\SocialContent - Kalvijn.jpg"
+                    logo-src=".\asset\bedrijflogo\Charlies.png" company-name="Charlies"></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponenthover" video-src="./asset/videos/v2_3.mp4"
+                    poster-src=".\asset\videoOverlayimage\Stoal.jpg" logo-src=".\asset\bedrijflogo\Covadis.svg"
+                    company-name="Stoal"></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponenthover" video-src="./asset/videos/v2_4.mp4"
+                    poster-src=".\asset\videoOverlayimage\SocialContent - Covadis.jpg"
+                    logo-src=".\asset\bedrijflogo\Covadis.svg" company-name="Covadis"></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponenthover"
+                    video-src=".\asset\videos\frisland.mp4" poster-src=".\asset\videoOverlayimage\TGG2.jpg"
+                    logo-src=".\asset\bedrijflogo\friesland.svg" company-name="TGG voor Friesland"></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponenthover"
+                    video-src=".\asset\videos\steel.mp4" poster-src=".\asset\videoOverlayimage\TailorSteel.jpg"
+                    logo-src=".\asset\bedrijflogo\247TailorSteel.svg" company-name="247 Tailor Steel"></video-cell>
+
             </div>
             <div>
 
             </div>
 
         </section>
-        <section class="section2" style="flex-direction: row-reverse;">
-            <image-component id="imageComponentSide" class-name="imageComponent1"  src="./asset/s2_1.webp"></image-component>
-            <test-side 
-                id="testComponentSide"
-                class-name="test-side"
-                titleTextPargraph="" 
-                titleText="Stand out" 
+        <section class="section2" style="flex-direction: row-reverse ;column-gap: 2rem;">
+            <image-component id="imageComponentSide" class-name="imageComponent1"
+                src="./asset/s2_1.webp"></image-component>
+            <test-side id="testComponentSide" class-name="test-side" titleTextPargraph="" titleText="Stand out"
                 descriptionText='[
                     "Durf jij jouw merk te onderscheiden? Jouw bedrijf écht te laten zien met unieke content? Wij vertellen jouw verhaal.",
                     "Geen moeilijke producties met overbetaalde acteurs en ongure regisseurs, maar laagdrempelige, eerlijke en snackable content. Content waar jouw doelgroep keer op keer van smult. ",
                     "We zetten de juiste kanalen in, zowel organisch als betaald, zodat je continu gezien wordt. Jouw content is oprecht, en dat zijn wij ook.",
                     "We werken met een transparant contentabonnement zonder verrassingen achteraf, zodat jij nergens omkijken naar hebt."
-                ]'
-                >
+                ]'>
             </test-side>
         </section>
-        <section></section>
+        <section class="videobar">
+            <video-bar-title titleTextPargraph="Ons aanbod" titleText="Expertises"></video-bar-title>
+            <div class="videosContiner" style="overflow-x: hidden;">
+                <image-component class="videoComponent1" class-name="imageComponent1"
+                    src=".\asset\Expertises\Expertises1.jpg" titlePargraph="" title="Snackable Content" paragraph="Content is tegenwoordig vluchtig, kort en krachtig. Wij maken jouw visuele snacks op een efficiënte manier. Videos en fotos voor jouw website en socials. Smullen maar!"></image-component>
+                <image-component class="videoComponent1" class-name="imageComponent1"
+                    src=".\asset\Expertises\Expertises2.webp" titlePargraph="" title="Socialmedia-beheer & campagnes" paragraph="De content is er, en nu? Natuurlijk plaatsen we dit op de juiste kanalen, zodat jouw doelgroep het ziet. Organisch of betaald. Anders is het wel verspilde moeite, niet?"></image-component>
+                <image-component class="videoComponent1" class-name="imageComponent1"
+                    src=".\asset\Expertises\Expertises3.webp" titlePargraph="" title="Trends & innovaties" paragraph="Waar is jouw doelgroep en wat doen ze? Wij houden de nieuwste trends in de gaten en zorgen ervoor dat je vooroploopt. Van 3D-filters tot jouw TikTok-strategie."></image-component>
+            </div>
+        </section>
         <section class="section2">
-            <image-component id="imageComponentSide" class-name="imageComponent1"  src="./asset/s2_2.webp"></image-component>
-            <test-side 
-                id="testComponentSide"
-                class-name="test-side" 
-                titleTextPargraph="Continu succes met"
-                titleText="Het Content Abonnement" 
-                descriptionText='[
+            <image-component id="imageComponentSide" class-name="imageComponent1"
+                src="./asset/s2_2.webp"></image-component>
+            <test-side id="testComponentSide" class-name="test-side" titleTextPargraph="Continu succes met"
+                titleText="Het Content Abonnement" descriptionText='[
                     "Online succes hangt af van de kwaliteit van je content, de kanalen die je inzet, maar zeker ook van de continuïteit. Ben jij wel structureel zichtbaar? Met ons contentabonnement ben je daarvan verzekerd. We maken samen met jou een plan en voeren dit continu uit, want de kracht zit hem in herhaling. We adviseren, creëren, plaatsen én meten. Altijd in overleg."
                     
                 ]'>
             </test-side>
+        </section>
+        <section class="videobar">
+            <video-bar-title titleTextPargraph="Ons team van" titleText="Social creatives"></video-bar-title>
+            <div class="videosContiner" style="overflow-x: hidden; flex-wrap:wrap; max-height:fit-content ;row-gap:3rem">
+                <image-component id="team1" class="videoComponent1 team" class-name="imageComponent1"
+                    src=".\asset\posterimg.jpg" titlePargraph="Social creative & owner" title="Jim Wijnen" paragraph=""></image-component>
+                <image-component id="team2" class="videoComponent1 team" class-name="imageComponent1"
+                    src=".\asset\team\team2.webp" titlePargraph="Social creative & owner" title="Roel Krabben" paragraph=""></image-component>
+                <image-component id="team6" class="videoComponent1 team" class-name="imageComponent1"
+                    src=".\asset\team\team6.jpg" titlePargraph="Social creative" title="Lana van den Berg" paragraph=""></image-component>
+                <image-component id="team4" class="videoComponent1 team" class-name="imageComponent1"
+                    src=".\asset\team\team4.webp" titlePargraph="Strategy & owner" title="Bas Stortelers" paragraph=""></image-component>
+                <image-component id="team5" class="videoComponent1 team" class-name="imageComponent1"
+                    src=".\asset\team\team5.jpg" titlePargraph="Social creative" title="Liz Damen" paragraph=""></image-component>
+
+            </div>
         </section>
     </main>
     <footer>
@@ -101,11 +134,12 @@
     </footer>
     <script src="components.js"></script>
     <script>
-        const nodelist= document.querySelectorAll('.videoComponent1')
+        const nodelist = document.querySelectorAll('.videoComponent1')
         console.log(nodelist)
-        nodelist.forEach((node,index) => {
+        nodelist.forEach((node, index) => {
             node.style.alignSelf = index % 2 ? 'flex-end' : 'flex-start';
         })
     </script>
 </body>
+
 </html>
