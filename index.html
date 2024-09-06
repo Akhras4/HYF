@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body >
+    <header>
+        <nav>
+
+        </nav>
+    </header>
+    <main>
+        <section class="home">
+            <div class="homeContiner" >
+                <div calss="textContiner">
+                    <p>The next social content agency </p>
+                    <h1>Creators of  
+                        <br>
+                       <span> social content</span> 
+                    </h1>
+                </div>
+               <div class="videoComponent">
+                <video-cell class-name="videoComponent" video-src="./asset/homevid.mp4" ></video-cell>
+                
+               </div>
+                <div>
+                <div class="imageComponent">
+                        <image-component class-name="imageComponent"  src="./asset/home.jpg"></image-component>
+                </div>
+                <div>
+                </div>
+
+            </div>
+        </section 
+        <section>
+        </section>
+        <section class="section2">
+            <image-component id="imageComponentSide" class-name="imageComponent1"  src="./asset/key.webp"></image-component>
+            <test-side 
+                id="testComponentSide"
+                class-name="test-side"
+                titleTextPargraph="" 
+                titleText="Consistentie = key" 
+                descriptionText='[
+                    "Continu online zichtbaar zijn. Eigenlijk is het een must, dat weet jij ook. Maar het is ook een vak apart. Waar haal je de tijd, inspiratie en skills vandaan om content te maken die écht gezien wordt? Hoe haal je de maximale waarde uit social media met de inzet van goede foto’s, video’s en campagnes? Op welke kanalen moet je eigenlijk aanwezig zijn?",
+                    "Laat dat gewoon aan ons over, zodat jij je kunt focussen op waar jij goed in bent. We maken unieke en oprechte visuele ‘snacks’ voor jouw doelgroep. Snackable content die past bij wie jij bent. En die is zó goed, dat men blijft terugkomen voor meer!"
+                ]'>
+            </test-side>
+        </section>
+        <section class="videobar">
+            <video-bar-title titleTextPargraph="Wij creëerden deze" titleText="Social content" ></video-bar-title>
+            <div class="videosContiner">
+                
+                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/v_1.mp4" ></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/v2_3.mp4" ></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/v2_4.mp4" ></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/v2.mp4" ></video-cell>
+                <video-cell class="videoComponent1" class-name="videoComponent" video-src="./asset/videos/s2_2.mp4" ></video-cell>
+            </div>
+            <div>
+
+            </div>
+
+        </section>
+        <section class="section2" style="flex-direction: row-reverse;">
+            <image-component id="imageComponentSide" class-name="imageComponent1"  src="./asset/s2_1.webp"></image-component>
+            <test-side 
+                id="testComponentSide"
+                class-name="test-side"
+                titleTextPargraph="" 
+                titleText="Stand out" 
+                descriptionText='[
+                    "Durf jij jouw merk te onderscheiden? Jouw bedrijf écht te laten zien met unieke content? Wij vertellen jouw verhaal.",
+                    "Geen moeilijke producties met overbetaalde acteurs en ongure regisseurs, maar laagdrempelige, eerlijke en snackable content. Content waar jouw doelgroep keer op keer van smult. ",
+                    "We zetten de juiste kanalen in, zowel organisch als betaald, zodat je continu gezien wordt. Jouw content is oprecht, en dat zijn wij ook.",
+                    "We werken met een transparant contentabonnement zonder verrassingen achteraf, zodat jij nergens omkijken naar hebt."
+                ]'
+                >
+            </test-side>
+        </section>
+        <section></section>
+        <section class="section2">
+            <image-component id="imageComponentSide" class-name="imageComponent1"  src="./asset/s2_2.webp"></image-component>
+            <test-side 
+                id="testComponentSide"
+                class-name="test-side" 
+                titleTextPargraph="Continu succes met"
+                titleText="Het Content Abonnement" 
+                descriptionText='[
+                    "Online succes hangt af van de kwaliteit van je content, de kanalen die je inzet, maar zeker ook van de continuïteit. Ben jij wel structureel zichtbaar? Met ons contentabonnement ben je daarvan verzekerd. We maken samen met jou een plan en voeren dit continu uit, want de kracht zit hem in herhaling. We adviseren, creëren, plaatsen én meten. Altijd in overleg."
+                    
+                ]'>
+            </test-side>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="components.js"></script>
+    <script>
+        const nodelist= document.querySelectorAll('.videoComponent1')
+        console.log(nodelist)
+        nodelist.forEach((node,index) => {
+            node.style.alignSelf = index % 2 ? 'flex-end' : 'flex-start';
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+:root{
+    --backgroundcolor:#11052c;
+    --textcolor:#ffffff;
+    --h1-font-size:clamp(1.5rem, 2rem, 2.5rem);
+    --p-font-size:clamp(0.7rem, 0.9rem, 1rem);
+    --h1-font-w:1000;
+
+}
+
+body{
+    background-color: var(--backgroundcolor);
+    overflow-x: hidden;
+    margin: 0 auto;
+    box-sizing: border-box;
+    
+
+    
+}
+
+.home{
+    width: 100vw;
+    height: 100vh;
+    background:
+    linear-gradient(to top , #11052c 10%, transparent ),
+    linear-gradient(100deg, 
+    #dddddd 5%, 
+    #d2c9d5 8%, 
+    rgb(177, 164, 185) 12%, 
+    #8b4cae 16%,
+    #6d289f 40%, 
+    #4e1c8d 50%, 
+    #261676 60%, 
+    #180d40 80%, 
+    #0e041f 100%);
+  
+}
+.SocialContent{
+    min-width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(0deg , #838383 5%, rgb(177, 164, 185) 10%, #6d289f 20%, #261676 40%, #0e041f),;
+}
+
+.homeContiner{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    justify-content: end;
+    grid-template-columns: [first] 25vw [line2] 35vw [line3] 30vw ;
+   grid-template-areas: 'text video img1' 'img2 empty empty';
+column-gap: 2vw;
+}
+.textContiner{
+    grid-area: text;
+    margin-top: 2rem;
+    align-self: flex-end;
+    margin-left:9rem ;
+
+
+}
+p{
+    font-size: 1.5rem;
+    margin-bottom: -5rem;
+    text-align: center;
+    margin-left: 4rem;
+    
+}
+ h1{
+    font-size:calc(var(--h1-font-size) + 3rem + 20px);
+    font-weight: bolder;
+    z-index: 99 !important;
+    position: relative;
+    white-space: nowrap;
+    break-inside: avoid;
+    text-align: center;
+    margin-left:6rem ;
+    color: transparent; 
+    -webkit-text-stroke: 2px black; 
+    background: linear-gradient(to right, #5e5e5e 30%, #bdbbb9 60%,transparent); /* Gradient background */
+    -webkit-background-clip: text; 
+    background-clip: text;
+
+}
+span{
+    color: transparent; 
+    -webkit-text-stroke: 2px black; 
+    background: linear-gradient(to right, #5c0f74b1 30%, #bdbbb9 60%,transparent); /* Gradient background */
+    -webkit-background-clip: text; 
+    background-clip: text;
+}
+.imageComponent, .videoComponent{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    grid-area: img1;
+    z-index: 1;
+    position: relative;
+}
+.imageComponent{
+    grid-area: img1;
+    margin-top: 8rem;
+}
+
+.videoComponent{
+    grid-area: video;
+    margin-top: 2rem;
+}
+.section2{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    margin-top: 7rem;
+}
+
+#imageComponentSide{
+    min-width: 40vw;
+    color: white;
+    position: relative;
+}
+#testComponentSide{
+    width: 40vw;
+    color: white;
+}
+.videosContiner{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: fit-content;
+    min-height: 110vh;
+    max-height: 120vh;
+    overflow-x: hidden;
+    overflow-y: visible;
+    margin-left:2rem ;
+
+}
+.videosContiner .videoComponent1 {
+min-width: 32vw;
+height: 65%;
+position: relative;
+}
+
