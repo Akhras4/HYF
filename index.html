@@ -167,17 +167,42 @@
             const btnSocialMedia = document.querySelector('.btnSocialMedia');
             const btnSocialMedian2 = document.querySelector('.btnSocialMedia.n2');
             const btnSocialMedian3 = document.querySelector('.btnSocialMedia.n3');
-            if (btnSocialMedia) { 
-                const rect = btnSocialMedia.getBoundingClientRect();
-                if (rect.top < window.innerHeight / 2) {
+    
+            if (btnSocialMedia) {
+                const scrollPosition = window.scrollY; 
+                const threshold = 0; 
+    
+                if (scrollPosition > threshold) {
                     btnSocialMedia.classList.add('active');
                     btnSocialMedian2.classList.add('active');
                     btnSocialMedian3.classList.add('active');
                     btnSocialMedia.style.zIndex = '100';
-                } 
+                } else {
+                    btnSocialMedia.classList.remove('active');
+                    btnSocialMedian2.classList.remove('active');
+                    btnSocialMedian3.classList.remove('active');
+                    btnSocialMedia.style.zIndex = '0'; 
+                }
             }
         });
     </script>
+    <!-- <script>
+        function handleScroll() {
+            const btnContiner = document.querySelector('.btnContiner');
+            const videobar = document.querySelector('.videobar');
+            if (videobar) { 
+                const rect = videobar.getBoundingClientRect();
+                if (rect.top < window.innerHeight / 2 && rect.bottom > (window.innerHeight / 2) -200) {
+                    btnContiner.classList.add('hidden');
+                } else {
+                    btnContiner.classList.remove('hidden');
+                }
+            }
+        }
+    
+        window.addEventListener('scroll', handleScroll); 
+    </script> -->
+    
 </body>
 
 </html>

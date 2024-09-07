@@ -4,7 +4,7 @@
     --h1-font-size: clamp(25px, 1.6rem, 2.5rem);
     --p-font-size: clamp(0.7rem, 0.9rem, 1rem);
     --h1-font-weight: 1000;
-    --btn-size: 90px;
+    --btn-size: 5rem;
     --blur-amount: 5px;
     --drop-shadow-color1: crimson;
     --drop-shadow-color2: rgb(160, 0, 210);
@@ -13,6 +13,21 @@
     --gradient-color: #138deb;
     --border-blur-color: rgb(231, 176, 176);
     --scale-hover: 1.1;
+}
+::-webkit-scrollbar {
+    width: 12px; 
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    cursor: grab;
 }
 
 body {
@@ -47,6 +62,13 @@ nav {
 .btnContiner {
     position: relative;
     margin: 2rem;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+    opacity: 1;
+    visibility: visible;
+}
+.btnContiner.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .btnSocialMedia {
@@ -58,7 +80,7 @@ nav {
     border: none;
     border-radius: 50%;
     border: 2px solid transparent;
-    transition: top 0.3s ease; 
+    transition: top 0.3s ease-in-out; 
 }
 .btnSocialMedia.active {
     position: fixed;
@@ -234,7 +256,9 @@ span {
     -webkit-background-clip: text;
     background-clip: text;
 }
-
+.videobar{
+    margin-left: 4rem;
+}
 .imageComponent,
 .videoComponent {
     display: flex;
@@ -244,6 +268,7 @@ span {
     grid-area: img1;
     z-index: 1;
     position: relative;
+    
 }
 
 .imageComponent {
@@ -253,6 +278,7 @@ span {
 .videoComponent {
     grid-area: video;
     margin-top: 2rem;
+    margin-left: 4rem;
 }
 
 .section2 {
@@ -265,6 +291,7 @@ span {
     flex-direction: row;
     margin-top: 7rem;
 }
+
 
 #imageComponentSide {
     min-width: 40vw;
@@ -291,7 +318,7 @@ span {
 
 .videosContiner .videoComponent1 {
     width: 30%;
-    min-width: 32vw;
+    min-width: 30vw;
     height: 100%;
     position: relative;
 }
