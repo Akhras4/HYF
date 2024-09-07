@@ -11,7 +11,22 @@
 <body>
     <header>
         <nav>
-
+            <div class="btnContiner">
+                <button class="btnSocialMedia n1">
+                    <div class="fancy"></div>
+                    <img  src=".\asset\icon\instagram_4138124.png" alt="Facebook">
+                </button>
+                <button class="btnSocialMedia n2">
+                    <div class="fancy"></div>
+                    <img src=".\asset\icon\facebook_4138125.png"  alt="" />
+                </button>
+                <button class="btnSocialMedia n3">
+                    <div class="fancy"></div>
+                    <img src=".\asset\icon\tik-tok_4138151.png"  alt="" />
+                </button>
+            </div>
+            <div></div>
+            <div></div>
         </nav>
     </header>
     <main>
@@ -94,11 +109,11 @@
         <section class="videobar">
             <video-bar-title titleTextPargraph="Ons aanbod" titleText="Expertises"></video-bar-title>
             <div class="videosContiner" style="overflow-x: hidden;">
-                <image-component class="videoComponent1" class-name="imageComponent1"
+                <image-component class="videoComponent1 Expertises" class-name="imageComponent1"
                     src=".\asset\Expertises\Expertises1.jpg" titlePargraph="" title="Snackable Content" paragraph="Content is tegenwoordig vluchtig, kort en krachtig. Wij maken jouw visuele snacks op een efficiënte manier. Videos en fotos voor jouw website en socials. Smullen maar!"></image-component>
-                <image-component class="videoComponent1" class-name="imageComponent1"
-                    src=".\asset\Expertises\Expertises2.webp" titlePargraph="" title="Socialmedia-beheer & campagnes" paragraph="De content is er, en nu? Natuurlijk plaatsen we dit op de juiste kanalen, zodat jouw doelgroep het ziet. Organisch of betaald. Anders is het wel verspilde moeite, niet?"></image-component>
-                <image-component class="videoComponent1" class-name="imageComponent1"
+                <image-component class="videoComponent1 Expertises" class-name="imageComponent1"
+                    src=".\asset\Expertises\Expertises2.webp " titlePargraph="" title="Socialmedia-beheer & campagnes" paragraph="De content is er, en nu? Natuurlijk plaatsen we dit op de juiste kanalen, zodat jouw doelgroep het ziet. Organisch of betaald. Anders is het wel verspilde moeite, niet?"></image-component>
+                <image-component class="videoComponent1 Expertises" class-name="imageComponent1"
                     src=".\asset\Expertises\Expertises3.webp" titlePargraph="" title="Trends & innovaties" paragraph="Waar is jouw doelgroep en wat doen ze? Wij houden de nieuwste trends in de gaten en zorgen ervoor dat je vooroploopt. Van 3D-filters tot jouw TikTok-strategie."></image-component>
             </div>
         </section>
@@ -138,8 +153,56 @@
         console.log(nodelist)
         nodelist.forEach((node, index) => {
             node.style.alignSelf = index % 2 ? 'flex-end' : 'flex-start';
+           
+        })
+        const nodelistExpertises = document.querySelectorAll('.videoComponent1.Expertises')
+        console.log(nodelistExpertises)
+        nodelistExpertises.forEach((node, index) => {
+            node.style.alignSelf = index % 2 ? 'center' : 'flex-start';
+           
         })
     </script>
+    <script>
+        window.addEventListener('scroll', () => {
+            const btnSocialMedia = document.querySelector('.btnSocialMedia');
+            const btnSocialMedian2 = document.querySelector('.btnSocialMedia.n2');
+            const btnSocialMedian3 = document.querySelector('.btnSocialMedia.n3');
+    
+            if (btnSocialMedia) {
+                const scrollPosition = window.scrollY; 
+                const threshold = 0; 
+    
+                if (scrollPosition > threshold) {
+                    btnSocialMedia.classList.add('active');
+                    btnSocialMedian2.classList.add('active');
+                    btnSocialMedian3.classList.add('active');
+                    btnSocialMedia.style.zIndex = '100';
+                } else {
+                    btnSocialMedia.classList.remove('active');
+                    btnSocialMedian2.classList.remove('active');
+                    btnSocialMedian3.classList.remove('active');
+                    btnSocialMedia.style.zIndex = '0'; 
+                }
+            }
+        });
+    </script>
+    <!-- <script>
+        function handleScroll() {
+            const btnContiner = document.querySelector('.btnContiner');
+            const videobar = document.querySelector('.videobar');
+            if (videobar) { 
+                const rect = videobar.getBoundingClientRect();
+                if (rect.top < window.innerHeight / 2 && rect.bottom > (window.innerHeight / 2) -200) {
+                    btnContiner.classList.add('hidden');
+                } else {
+                    btnContiner.classList.remove('hidden');
+                }
+            }
+        }
+    
+        window.addEventListener('scroll', handleScroll); 
+    </script> -->
+    
 </body>
 
 </html>
