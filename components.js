@@ -5,6 +5,7 @@ class ImgComponent extends HTMLElement {
 
         const wrapper = document.createElement('div');
         const className = this.getAttribute('class-name') || 'default-class';
+        const classImg=this.getAttribute('class')
         wrapper.classList.add(className);
 
         const image = document.createElement('img');
@@ -27,6 +28,11 @@ class ImgComponent extends HTMLElement {
         if (title) {
             title.classList.add('titleText');
             title.textContent = titleText;
+            if (classImg === 'videoComponent1 team') {
+                title.style.bottom = '0rem';
+            } else {
+                title.style.bottom = '3rem';
+            }
         }
 
         const paragraphText = this.getAttribute('paragraph');
@@ -34,7 +40,10 @@ class ImgComponent extends HTMLElement {
         if (paragraph) {
             paragraph.classList.add('paragraph');
             paragraph.textContent = paragraphText;
+            
+            
         }
+        
 
         wrapper.append(image, imgBg);
         if (titleParagraph) wrapper.appendChild(titleParagraph);
@@ -42,9 +51,13 @@ class ImgComponent extends HTMLElement {
         if (paragraph) wrapper.appendChild(paragraph);
 
         this.shadowRoot.appendChild(wrapper);
+        
 
         const style = document.createElement('style');
         style.textContent = `
+        :host {
+                z-index: -5; 
+                }
             img {
                 width: 90%;
                 height: auto;
@@ -65,10 +78,10 @@ class ImgComponent extends HTMLElement {
             }
               .paragraph {
                 position: absolute;
-                bottom: -6rem;
+                bottom: -3rem;
                 left: 0;
                 right: 0;
-                z-index: 10;
+                z-index: 0;
                 text-align: center;
                 color: white;
                 margin: 0;
@@ -78,10 +91,9 @@ class ImgComponent extends HTMLElement {
                 font-size: 2rem;
                 overflow:visibel;
                 position: absolute;
-                bottom: 10px;
                 left: 0;
                 right: 0;
-                z-index: 10;
+                z-index: 0;
                 text-align: center;
                 color: white;
                 margin: 0;
@@ -93,7 +105,7 @@ class ImgComponent extends HTMLElement {
                 bottom: 3rem;
                 left: 0;
                 right: 0;
-                z-index: 10;
+                z-index: 0;
                 text-align: center;
                 color: #00c7ff;
                 margin-bottom: 0;
@@ -162,9 +174,10 @@ class VideoCell extends HTMLElement {
 
         const style = document.createElement('style');
         style.textContent = `
+        
             video {
                 width: 90%;
-                height: 100%;
+                height: 90%;
                 max-height: 100vh;
                 object-fit: cover;
                 z-index: 1;
@@ -327,6 +340,7 @@ class VideoBarTitle  extends HTMLElement{
                 margin: 16px;
                 align-items: center;
                 justify-content: center;
+                
             }
             .titleParagraph {
                 font-size: 1.4rem;
