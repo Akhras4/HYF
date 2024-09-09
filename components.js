@@ -113,6 +113,8 @@ class ImgComponent extends HTMLElement {
                 font-size: 1.1rem;
                 
                 }
+                @media screen and (max-width:900px) {
+                }
 
         `;
         this.shadowRoot.appendChild(style);
@@ -177,8 +179,9 @@ class VideoCell extends HTMLElement {
         
             video {
                 width: 90%;
-                height: 90%;
+                height: 100%;
                 max-height: 100vh;
+                min-height: 400px;
                 object-fit: cover;
                 z-index: 1;
                 cursor: pointer;
@@ -227,6 +230,12 @@ class VideoCell extends HTMLElement {
                 text-align: center;
                 color: white;
                 margin: 0;
+            }
+            @media screen and (max-width:900px) {
+                 .videoComponenthover  {
+                 height: 100%;
+                 
+                }
             }
         `;
         this.shadowRoot.appendChild(style);
