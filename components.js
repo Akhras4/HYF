@@ -31,7 +31,7 @@ class ImgComponent extends HTMLElement {
             if (classImg === 'videoComponent1 team') {
                 title.style.bottom = '0rem';
             } else {
-                title.style.bottom = '3rem';
+                title.style.bottom = '6rem';
             }
         }
 
@@ -51,10 +51,14 @@ class ImgComponent extends HTMLElement {
 
         const style = document.createElement('style');
         style.textContent = `
+        :host{
+        overflow: visible;
+        }
             img {
                 width: 90%;
                 height: auto;
                 max-height: 90vh;
+                min-height: auto;
                 background-repeat: no-repeat;
                 position: relative;
                 object-fit: cover;
@@ -70,47 +74,60 @@ class ImgComponent extends HTMLElement {
                 height: 20%;
                 z-index: var(--imageboxgradient-z-index, 9); 
                 background-image: linear-gradient(rgba(17, 5, 44, 0), rgba(17, 5, 44, .82) 47%, rgba(17, 5, 44, .91) 59%, rgba(17, 5, 44, .94) 66%, rgba(17, 5, 44, .98) 75%, #11052c 82%);
-                border-radius: 30px;
+               
             }
             .paragraph {
                 position: absolute;
-                bottom: -3rem;
+                bottom: 2rem;
                 left: 0;
                 right: 0;
-                z-index: var(--paragraph-z-index, 10); /* Using CSS variable */
+                z-index: var(--paragraph-z-index, 10); 
                 text-align: center;
                 color: white;
-                margin: 0;
                 width: 90%;
+                overflow: visible;
+                font-size: 1rem;
             }
             .titleText {
-                font-size: 2rem;
+                font-size: 1.7rem;
                 position: absolute;
                 left: 0;
                 right: 0;
-                z-index: var(--titleText-z-index, 0); /* Using CSS variable */
+                z-index: var(--titleText-z-index, 0); 
                 text-align: center;
                 color: white;
-                margin: 0;
+                margin-bottom: 2rem;
                 width: 90%;
+               
             }
             .titleParagraphText {
                 position: absolute;
-                bottom: 3rem;
+                bottom: 4.5rem;
                 left: 0;
                 right: 0;
-                z-index: var(--titleParagraphText-z-index, 0); /* Using CSS variable */
+                z-index: var(--paragraph-z-index, 10); 
                 text-align: center;
                 color: #00c7ff;
                 margin-bottom: 0;
                 width: 90%;
-                font-size: 1.1rem;
+                font-size: 1.1rem;   
             }
-            @media screen and (max-width: 900px) {
-                img {
-                    width: 100%;
+            @media screen and (max-width: 1000px) {
+            .titleText {
+                  bottom: 1rem;
+                  margin-bottom: 0rem;
+                  font-size: 1rem;
+            }
+                .paragraph {
+                font-size: 0.8rem;
+                bottom: 0rem;
+                
+                }
+                .titleParagraphText {
+                bottom: 2rem;
                 }
             }
+              
         `;
         this.shadowRoot.appendChild(style);
     }
@@ -125,164 +142,164 @@ customElements.define('image-component', ImgComponent);
 
 
 class VideoCell extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
+  constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
 
-        const wrapper = document.createElement('div');
-        const className = this.getAttribute('class-name') || 'default-class';
-        wrapper.classList.add(className);
+      const wrapper = document.createElement('div');
+      const className = this.getAttribute('class-name') || 'default-class';
+      wrapper.classList.add(className);
 
-        // Video element
-        const video = document.createElement('video');
-        const videoSrc = this.getAttribute('video-src') || 'default.mp4';
-        const posterSrc = this.getAttribute('poster-src') || 'default.jpg';
+      // Video element
+      const video = document.createElement('video');
+      const videoSrc = this.getAttribute('video-src') || 'default.mp4';
+      const posterSrc = this.getAttribute('poster-src') || 'default.jpg';
 
-        video.setAttribute('autoplay', '');
-        video.setAttribute('loop', '');
-        video.setAttribute('muted', '');
-        video.setAttribute('playsinline', '');
+      video.setAttribute('autoplay', '');
+      video.setAttribute('loop', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
 
-        const source = document.createElement('source');
-        source.setAttribute('src', videoSrc);
-        source.setAttribute('type', 'video/mp4');
-        video.appendChild(source);
+      const source = document.createElement('source');
+      source.setAttribute('src', videoSrc);
+      source.setAttribute('type', 'video/mp4');
+      video.appendChild(source);
 
-        // Image overlay
-        const imgOverlay = document.createElement('img');
-        imgOverlay.classList.add('overlay');
-        imgOverlay.setAttribute('src', posterSrc);
-        imgOverlay.setAttribute('alt', 'Video Overlay');
+      const imgOverlay = document.createElement('img');
+      imgOverlay.classList.add('overlay');
+      imgOverlay.setAttribute('src', posterSrc);
+      imgOverlay.setAttribute('alt', 'Video Overlay');
 
-        // Optional logo
-        const logoSrc = this.getAttribute('logo-src');
-        const logo = logoSrc ? document.createElement('img') : null;
-        if (logo) {
-            logo.classList.add('logo');
-            logo.setAttribute('src', logoSrc);
-        }
+      // Only create the logo if logoSrc is provided
+      const logoSrc = this.getAttribute('logo-src');
+      if (logoSrc) {
+          const logo = document.createElement('img');
+          logo.classList.add('logo');
+          logo.setAttribute('src', logoSrc);
+          wrapper.appendChild(logo); // Append only if it exists
+      }
 
-        // Optional company name
-        const companyNameText = this.getAttribute('company-name');
-        const companyName = companyNameText ? document.createElement('h2') : null;
-        if (companyName) {
-            companyName.classList.add('companyName');
-            companyName.textContent = companyNameText;
-        }
+      // Only create the company name if companyNameText is provided
+      const companyNameText = this.getAttribute('company-name');
+      if (companyNameText) {
+          const companyName = document.createElement('h2');
+          companyName.classList.add('companyName');
+          companyName.textContent = companyNameText;
+          wrapper.appendChild(companyName); // Append only if it exists
+      }
 
-        // Gradient background
-        const imgBg = document.createElement('div');
-        imgBg.classList.add('imageboxgradient');
+      const imgBg = document.createElement('div');
+      imgBg.classList.add('imageboxgradient');
 
-        // Append elements
-        wrapper.append(video, imgBg, logo, companyName, imgOverlay);
-        this.shadowRoot.appendChild(wrapper);
+      wrapper.append(video, imgBg, imgOverlay); // Append only necessary elements
+      this.shadowRoot.appendChild(wrapper);
 
-        // CSS with z-index variables
-        const style = document.createElement('style');
-        style.textContent = `
-            :host {
-                --z-index-video: 1;
-                --z-index-overlay: 3;
-                --z-index-gradient: 9;
-                --z-index-logo: 9;
-                --z-index-company-name: 10;
-            }
+      const style = document.createElement('style');
+      style.textContent = `
+          :host {
+              --z-index-video: 1;
+              --z-index-overlay: 3;
+              --z-index-gradient: 9;
+              --z-index-logo: 9;
+              --z-index-company-name: 10;
+          }
 
-            video {
-                width: 90%;
-                height: 100%;
-                max-height: 100vh;
-                min-height: 400px;
-                object-fit: cover;
-                z-index: var(--z-index-video);
-                cursor: pointer;
-                border-radius: 30px;
-                position: relative;
-            }
+          video {
+              width: 90%;
+              height: 100%;
+              max-height: 100%;
+              min-height: 400px;
+              object-fit: cover;
+              z-index: var(--z-index-video);
+              cursor: pointer;
+              border-radius: 30px;
+              position: relative;
+              
+          }
 
-            .imageboxgradient {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                width: 90%;
-                height: 20%;
-                background-image: linear-gradient(rgba(17, 5, 44, 0), rgba(17, 5, 44, .82) 47%, rgba(17, 5, 44, .91) 59%, rgba(17, 5, 44, .94) 66%, rgba(17, 5, 44, .98) 75%, #11052c 82%);
-                z-index: var(--z-index-gradient);
-                border-bottom-right-radius: 30px;
-                border-bottom-left-radius: 30px;
-            }
+          .imageboxgradient {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 90%;
+              height: 20%;
+              background-image: linear-gradient(rgba(17, 5, 44, 0), rgba(17, 5, 44, .82) 47%, rgba(17, 5, 44, .91) 59%, rgba(17, 5, 44, .94) 66%, rgba(17, 5, 44, .98) 75%, #11052c 82%);
+              z-index: var(--z-index-gradient);
+              border-bottom-right-radius: 30px;
+              border-bottom-left-radius: 30px;
+          }
 
-            .overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 90%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-                z-index: var(--z-index-overlay);
-                border-radius: 30px;
-                pointer-events: none;
-            }
+          .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 90%;
+              height: 100%;
+               max-height: 100%;
+              min-height: 400px;
+              object-fit: cover;
+              display: block;
+              z-index: var(--z-index-overlay);
+              border-radius: 30px;
+              pointer-events: none;
+          }
 
-            .logo {
-                position: absolute;
-                width: 40%;
-                height: 20%;
-                top: 10px;
-                left: 10px;
-                z-index: var(--z-index-logo);
-            }
+          .logo {
+              position: absolute;
+              width: 40%;
+              height: 20%;
+              top: 10px;
+              left: 10px;
+              z-index: var(--z-index-logo);
+          }
 
-            .companyName {
-                position: absolute;
-                bottom: 10px;
-                left: 0;
-                right: 0;
-                z-index: var(--z-index-company-name);
-                text-align: center;
-                color: white;
-                margin: 0;
-            }
+          .companyName {
+              position: absolute;
+              bottom: 10px;
+              left: 0;
+              right: 0;
+              z-index: var(--z-index-company-name);
+              text-align: center;
+              color: white;
+              margin: 0;
+          }
 
-            @media screen and (max-width: 900px) {
-                .videoComponenthover {
-                    height: 100%;
-                }
-            }
-        `;
-        this.shadowRoot.appendChild(style);
+          @media (max-width: 900px) {
+              .video{
+                
+              }
+          }
+      `;
+      this.shadowRoot.appendChild(style);
 
-        const handleEvent = (event) => {
-            if (event.type === 'mouseover' || event.type === 'click') {
-                if (video.paused) {
-                    video.play();
-                    imgOverlay.style.display = 'none'; 
-                }
-            } else if (event.type === 'mouseout') {
-                if (!video.paused) {
-                    video.pause();
-                    imgOverlay.style.display = 'block';
-                }
-            }
-        };
+      const handleEvent = (event) => {
+          if (event.type === 'mouseover' || event.type === 'click') {
+              if (video.paused) {
+                  video.play();
+                  imgOverlay.style.display = 'none'; 
+              }
+          } else if (event.type === 'mouseout') {
+              if (!video.paused) {
+                  video.pause();
+                  imgOverlay.style.display = 'block';
+              }
+          }
+      };
 
-        const eventType = className === "videoComponenthover" ? "mouseover" : "click";
-        video.addEventListener(eventType, handleEvent);
-
-        if (className === "videoComponenthover") {
-            video.addEventListener("mouseout", handleEvent);
-        }
-
-        if (video.paused) {
-            imgOverlay.style.display = 'block'; 
-        }
-    }
+      const eventType = className === "videoComponenthover" ? "mouseover" : "click";
+      video.addEventListener(eventType, handleEvent);
+      if (className === "videoComponenthover") {
+          video.addEventListener("mouseout", handleEvent);
+      }
+      if (video.paused) {
+          imgOverlay.style.display = 'block'; 
+      }
+  }
 }
 
 customElements.define('video-cell', VideoCell);
+
 
 
 
@@ -299,12 +316,22 @@ class Testside extends HTMLElement {
         const style = document.createElement('style');
         style.textContent = `
             .titleParagraph{
-               color: red;
-              
+               color: skyblue;
+               font-size:clamp(0.9rem, 1.2rem, 1.4rem);
+               word-spacing:1px
             }
                p{
                 font-size:clamp(0.9rem, 1.2rem, 1.4rem);
-               word-spacing:1px
+                 word-spacing:1px
+               }
+               @media(max-width:800px){
+               h1{
+               font-size:clamp(1.2rem, 1.4rem, 1.6rem)
+               }
+                  p{
+                   font-size:clamp(0.8rem, 1rem, 1.2rem);
+                   word-spacing:1px              
+                  }
                }
         `;
         this.shadowRoot.appendChild(style);
@@ -379,13 +406,14 @@ class VideoBarTitle  extends HTMLElement{
                 text-align:center;
             }
             h1 {
-                font-size: 3rem;
+                font-size: 2rem;
                 color: #ffffff; 
                 border: 2px solid #ffffff; 
                 padding: 10px;
                 background: rgba(0, 0, 0, 0.5);   
                 position: relative;
                 overflow: hidden;
+                white-space: nowrap;
                 
             }
             h1::before {
@@ -427,8 +455,8 @@ class MobileNavbar extends HTMLElement {
   
           .open-nav-button {
             position: fixed;
-            top: 10px;
-            right: 4px;
+                top: 35px;
+                right: 8px;
             z-index: var(--z-index-nav-button);
             cursor: pointer;
             color: white;
@@ -546,7 +574,7 @@ class MobileNavbar extends HTMLElement {
           }
   
           .dropdown-content.active {
-            max-height: 200px; /* Adjust as needed for dropdown content */
+            max-height: 200px; 
           }
   
           .dropdown-content a {
@@ -671,6 +699,207 @@ class MobileNavbar extends HTMLElement {
     customElements.define('mobile-navbar', MobileNavbar);
     
 
+
+    class BtnSocialMedia extends HTMLElement {
+      constructor() {
+        super();
+        
+        const shadow = this.attachShadow({ mode: 'open' });
+
+        const button = document.createElement('button');
+        button.classList.add('btnSocialMedia', this.getAttribute('type'));
+    
+
+        const fancyDiv = document.createElement('div');
+        fancyDiv.classList.add('fancy', this.getAttribute('type'));
+    
+
+        const img = document.createElement('img');
+        img.src = this.getAttribute('src');
+        img.alt = this.getAttribute('alt') || 'Social Media Icon';
+    
+
+        button.appendChild(fancyDiv);
+        button.appendChild(img);
+        shadow.appendChild(button);
+    
+
+        const style = document.createElement('style');
+        style.textContent = `
+          .btnSocialMedia {
+              background-color: white;
+              width: var(--btn-size, 60px);
+              height: var(--btn-size, 60px);
+              border: none;
+              border-radius: 50%;
+              transition: inset 9s cubic-bezier(0.42, 0, 0.58, 1), top 0.8s cubic-bezier(0.42, 0, 0.58, 1); 
+              position: relative;
+          }
+    
+          .btnSocialMedia img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              z-index: 44;
+              position: relative;
+              transition: filter 0.1s ease;
+          }
+    
+          .btnSocialMedia::before {
+              content: '';
+              position: absolute;
+              inset: -5px;
+              border-radius: 50%;
+              background: var(--border-blur-color, rgba(255, 255, 255, 0.2));
+              filter: blur(var(--blur-amount, 10px));
+              z-index: -1;
+          }
+    
+          .fancy {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              z-index: 1;
+          }
+    
+          .fancy::before {
+              content: '';
+              position: absolute;
+              inset: -5px;
+              border-radius: 50%;
+              background: conic-gradient(
+                  from var(--conic-gradient-deg, 0deg),
+                  transparent 0%,
+                  var(--gradient-color, rgba(255, 0, 150, 0.8)) 15%,
+                  transparent 25%);
+              z-index: -1;
+              filter: blur(var(--blur-amount));
+              animation: rotate 5s linear infinite;
+          }
+    
+          @keyframes rotate {
+              from {
+                  transform: rotate(0deg);
+              }
+              to {
+                  transform: rotate(360deg);
+              }
+          }
+          
+          .btnSocialMedia {
+              filter: drop-shadow(var(--drop-shadow-offset2, 0px 4px 6px) var(--drop-shadow-color2, rgba(0, 0, 0, 0.2)));
+          }
+              .btnSocialMedia:hover {
+              scale: var(--scale-hover);
+              z-index: 10;
+              filter: none !important;
+              cursor:pointer;
+          }
+        `;
+    
+        shadow.appendChild(style);
+        const gradientDeg = this.getAttribute('conic-gradient-deg');
+    if (gradientDeg) {
+      this.style.setProperty('--conic-gradient-deg', gradientDeg);
+    }
+      }
+    }
+    
+    customElements.define('btn-social-media', BtnSocialMedia);
+    
+    
+    class ContactInfo extends HTMLElement {
+      constructor() {
+        super();
+        
+ 
+        const shadow = this.attachShadow({ mode: 'open' });
+        
+
+        const template = document.createElement('template');
+        template.innerHTML = `
+          <style>
+            .contact-component {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                padding: 20px; 
+                height: 90vh; 
+            }
+  
+            .contact-info {
+                max-width: 50%;
+               padding:140px;
+            }
+  
+            .contact-info h1 ,h2 {
+                margin: 0;
+                font-size: 2rem; 
+                color: #ffff;
+            }
+  
+            .contact-info p {
+                margin: 10px 0;
+                font-size: 1rem; 
+                color: #666; 
+            }
+  
+            .contact-info a {
+                color: #007bff; 
+                text-decoration: none;
+            }
+  
+            .contact-info a:hover {
+                text-decoration: underline; 
+            }
+  
+            .contact-image {
+               max-width: 50%;
+                 height: 90vh;
+                align-self:flex-end;
+            }
+  
+            .contact-image img {
+                width: 100%;
+                height: 90vh;
+                border-radius: 10px; 
+                object-fit: cover; 
+            }
+                .social-media {
+                  margin-top: 100px;
+                  display: flex;
+                  gap: 80px;
+              }
+                 
+          </style>
+          <div class="contact-component">
+              <div class="contact-info">
+                  <h1>Contact</h1>
+                  <h2>Email: <a href="mailto:info@liike.nl">Info@liike.nl</a></h2>
+                  <h2>Phone: <a href="tel:+31544221422">0544 22 14 22</a></h2>
+                  <h2>Address: Ziekenhuisstraat 1, 7141 AN Groenlo</h2>
+                  <div class="social-media">
+                    <slot name="social-media"></slot>
+                  </div>
+              </div>
+              <div class="contact-image">
+                  <img src="./asset/s2_2.webp" alt="Contact Image">
+              </div>
+          </div>
+        `;
+        
+
+        shadow.appendChild(template.content.cloneNode(true));
+      }
+    }
+  
+
+    customElements.define('contact-info', ContactInfo);
+    
+
+    
+
+
 let timeleave; 
 
 document.querySelector('#diensten').addEventListener('mouseenter', () => {
@@ -729,5 +958,6 @@ const nodelist = document.querySelectorAll('.videoComponent1')
         console.log(nodelistExpertises)
         nodelistExpertises.forEach((node, index) => {
             node.style.alignSelf = index % 2 ? 'center' : 'flex-start';
+            node.style.marginTop = index % 2 ? '-2rem' : '0';
 
         })
