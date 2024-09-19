@@ -30,9 +30,9 @@ class ImgComponent extends HTMLElement {
             title.textContent = titleText;
             if (classImg === 'videoComponent1 team') {
                 title.style.bottom = '0rem';
-            } else {
-                title.style.bottom = '6rem';
-            }
+            }else{
+              title.style.bottom = '0rem';
+            } 
         }
 
         const paragraphText = this.getAttribute('paragraph');
@@ -78,7 +78,7 @@ class ImgComponent extends HTMLElement {
             }
             .paragraph {
                 position: absolute;
-                bottom: 2rem;
+                bottom: -6rem;
                 left: 0;
                 right: 0;
                 z-index: var(--paragraph-z-index, 10); 
@@ -96,26 +96,43 @@ class ImgComponent extends HTMLElement {
                 z-index: var(--titleText-z-index, 0); 
                 text-align: center;
                 color: white;
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 width: 90%;
                
             }
             .titleParagraphText {
                 position: absolute;
-                bottom: 4.5rem;
+                bottom: 2rem;
                 left: 0;
                 right: 0;
                 z-index: var(--paragraph-z-index, 10); 
                 text-align: center;
                 color: #00c7ff;
-                margin-bottom: 0;
+                
                 width: 90%;
                 font-size: 1.1rem;   
             }
-            @media screen and (max-width: 1000px) {
+            @media screen and (max-width: 1150px) {
             .titleText {
-                  bottom: 1rem;
-                  margin-bottom: 0rem;
+
+                  font-size: 1rem;
+            }
+                .paragraph {
+                font-size: 0.8rem;
+                bottom:-5rem;
+                
+                }
+            }
+                @media screen and (max-width: 990px) {
+                .titleText {
+                  margin-bottom:: 0rem !important;
+
+            }
+                }
+                @media screen and (max-width: 700px) {
+            .titleText {
+                  bottom: 0.5rem;
+                  margin-bottom: 3.5rem;
                   font-size: 1rem;
             }
                 .paragraph {
@@ -124,7 +141,7 @@ class ImgComponent extends HTMLElement {
                 
                 }
                 .titleParagraphText {
-                bottom: 2rem;
+                bottom: 4rem;
                 }
             }
               
@@ -208,7 +225,7 @@ class VideoCell extends HTMLElement {
               width: 90%;
               height: 100%;
               max-height: 100%;
-              min-height: 400px;
+              min-height: 500px;
               object-fit: cover;
               z-index: var(--z-index-video);
               cursor: pointer;
@@ -265,7 +282,7 @@ class VideoCell extends HTMLElement {
               margin: 0;
           }
 
-          @media (max-width: 900px) {
+          @media (max-width: 450px) {
               .video{
                 
               }
@@ -455,12 +472,11 @@ class MobileNavbar extends HTMLElement {
   
           .open-nav-button {
             position: fixed;
-                top: 35px;
-                right: 8px;
+            top: 35px;
+            right: 8px;
             z-index: var(--z-index-nav-button);
             cursor: pointer;
             color: white;
-            height: 20vh;
             overflow: hidden;
             transition: height var(--nav-transition-duration) ease;
           }
@@ -614,6 +630,13 @@ class MobileNavbar extends HTMLElement {
             .navbar-container {
               display: block;
             }
+          }
+            @media (max-width: 450px) {
+            .open-nav-button {
+            position: fixed;
+                top: 15px;
+                right: 8px;
+    }
           }
         </style>
         <div class="navbar-container">
