@@ -826,7 +826,7 @@ class MobileNavbar extends HTMLElement {
   
           .open-nav-button {
             position: fixed;
-            top: 35px;
+            top: 20px;
             right: 8px;
             z-index: var(--z-index-nav-button);
             cursor: pointer;
@@ -990,7 +990,7 @@ class MobileNavbar extends HTMLElement {
             position: fixed;
                 top: 15px;
                 right: 8px;
-    }
+                }
           }
         </style>
         <div class="navbar-container">
@@ -1199,11 +1199,14 @@ class MobileNavbar extends HTMLElement {
   
             .contact-info {
                 max-width: 50%;
-               padding:140px;
+               padding:55px;
+              max-height: 80vh;
+              display: flex;
+              justify-items: flex-start;
+              flex-direction: column;
             }
   
             .contact-info h1 ,h2 {
-                margin: 0;
                 font-size: 2rem; 
                 color: #ffff;
             }
@@ -1213,14 +1216,46 @@ class MobileNavbar extends HTMLElement {
                 font-size: 1rem; 
                 color: #666; 
             }
+                @media (max-width: 1200px) {
+    .contact-info h1, 
+    .contact-info h2 {
+        font-size: 1.75rem; 
+    }
+
+    .contact-info p {
+        font-size: 0.9rem; 
+    }
+}
+
+    @media (max-width: 900px) {
+      .contact-info h1, 
+      .contact-info h2 {
+          font-size: 1.2rem; 
+      }
+
+      .contact-info p {
+          font-size: 0.8rem; 
+        }
+      }
+
+    @media (max-width: 600px) {
+        .contact-info h1, 
+        .contact-info h2 {
+            font-size: 1rem; 
+        }
+
+        .contact-info p {
+            font-size: 0.75rem; 
+        }
+    }
   
             .contact-info a {
-                color: #007bff; 
+                color: white; 
                 text-decoration: none;
             }
   
             .contact-info a:hover {
-                text-decoration: underline; 
+                  filter: drop-shadow(0 0 0.75rem rgb(160, 0, 210));
             }
   
             .contact-image {
@@ -1231,7 +1266,7 @@ class MobileNavbar extends HTMLElement {
   
             .contact-image img {
                 width: 100%;
-                height: 90vh;
+                height: 70vh;
                 border-radius: 10px; 
                 object-fit: cover; 
             }
@@ -1239,15 +1274,71 @@ class MobileNavbar extends HTMLElement {
                   margin-top: 100px;
                   display: flex;
                   gap: 80px;
+                  max-width:50vw;
               }
-                 
+                  @media (max-width:650px){
+                  .social-media{
+                      gap: 43px
+                          }
+                  }
+                  .address{
+                  display:flex;
+                  flex-direction:column;
+                  }
+                  .addressimage{
+                  align-self:end;
+                  position: relative;
+                  display: inline-block;
+                  }
+
+                  .addressimage img {
+                      border: 2px solid black;
+                      border-radius: 30px;
+                      width:30vw;
+                      max-width:400px
+                    }
+
+                  .addressimage .overlay {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      right: 0;
+                      bottom: 5px;
+                      background-color: rgba(128, 128, 128, 0.5); 
+                      border-radius: 30px;
+                      opacity: 0; 
+                      transition: opacity 0.3s;
+                      display: flex; 
+                      align-items: center; 
+                      justify-content: center; 
+                      color: white; 
+                      font-size: 18px; 
+                  }
+
+                  .addressimage:hover .overlay {
+                      opacity: 1; 
+                  }
           </style>
           <div class="contact-component">
               <div class="contact-info">
                   <h1>Contact</h1>
-                  <h2>Email: <a href="mailto:info@liike.nl">Info@liike.nl</a></h2>
-                  <h2>Phone: <a href="tel:+31544221422">0544 22 14 22</a></h2>
-                  <h2>Address: Ziekenhuisstraat 1, 7141 AN Groenlo</h2>
+                  <h2>Email: <a href="mailto:abdoakhras4@gmail.com">abdoakhras4@gmail.com</a></h2>
+                  <h2>Phone: <a href="https://wa.me/31616692843" target="_blank">0616692843 </a></h2>
+                  <div class="address">
+                  <h2>
+                      <a href="https://www.google.com/maps/search/?api=1&query=De+Gildekamp+2311,+Nijmegen" target="_blank">
+                         Address:De Gildekamp 2311, Nijmegen
+                      </a>
+                    </h2>
+                    <a class="addressimage" href="https://www.google.com/maps/search/?api=1&query=De+Gildekamp+2311,+Nijmegen" target="_blank">
+                    <div class="overlay">
+                      <span class="overlay-text">
+                          <span class="map-icon">&#x1F4CD;</span> Open Map
+                      </span>
+                    </div>
+                      <img src="./asset/address/address.PNG"  alt="De Gildekamp 2311, Nijmegen" >
+                    </a>
+                    </div>
                   <div class="social-media">
                     <slot name="social-media"></slot>
                   </div>
