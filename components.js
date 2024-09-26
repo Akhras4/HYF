@@ -827,7 +827,7 @@ class MobileNavbar extends HTMLElement {
           .open-nav-button {
             position: fixed;
             top: 20px;
-            right: 8px;
+            right: 25px;
             z-index: var(--z-index-nav-button);
             cursor: pointer;
             color: white;
@@ -988,8 +988,8 @@ class MobileNavbar extends HTMLElement {
             @media (max-width: 450px) {
             .open-nav-button {
             position: fixed;
-                top: 15px;
-                right: 8px;
+                top: 25px;
+                right: 15px;
                 }
           }
         </style>
@@ -1336,7 +1336,7 @@ class MobileNavbar extends HTMLElement {
                           <span class="map-icon">&#x1F4CD;</span> Open Map
                       </span>
                     </div>
-                      <img src="./asset/address/address.PNG"  alt="De Gildekamp 2311, Nijmegen" >
+                      <img src="https://hyfassinment.s3.amazonaws.com/asset/address/address.PNG"  alt="De Gildekamp 2311, Nijmegen" >
                     </a>
                     </div>
                   <div class="social-media">
@@ -1344,7 +1344,7 @@ class MobileNavbar extends HTMLElement {
                   </div>
               </div>
               <div class="contact-image">
-                  <img src="./asset/s2_2.webp" alt="Contact Image">
+                  <img src="https://hyfassinment.s3.amazonaws.com/asset/s2_2.webp" alt="Contact Image">
               </div>
           </div>
         `;
