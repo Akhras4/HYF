@@ -240,7 +240,7 @@ btn-social-media {
     }
     .logo svg{
         position: absolute;
-        top: -56px;
+        top: -66px;
         left: 0;
         width: 50vw;
     }
@@ -389,7 +389,7 @@ color: #1ee6d1;
 
     .homeContainer .videoComponent {
         margin-top: 8rem;
-        margin-right: -2rem;
+        margin-right: -1rem;
         width: 100vw;
         height: 70%; 
         object-fit:cover; 
@@ -426,8 +426,8 @@ color: #1ee6d1;
 @media (max-width: 450px) {
 
     .homeContainer .videoComponent {
-        margin-top: 2rem;
-        margin-right: -1rem;
+        margin-top: 8rem;
+        margin-right: 0rem;
         height: 80%; 
 
     }
