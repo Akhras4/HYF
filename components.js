@@ -1422,3 +1422,172 @@ const nodelist = document.querySelectorAll('.videoComponent1')
             node.style.marginTop = index % 2 ? '-2rem' : '0';
 
         })
+      //   document.addEventListener("DOMContentLoaded", function() {
+      //     // Fetch the IP address from the API
+      //     fetch("https://api.ipify.org?format=json")
+      //         .then(response => response.json())
+      //         .then(data => {
+      //             // Display the IP address on the screen
+      //             alert(data.ip);
+      //         })
+      //         .catch(error => {
+      //             console.error("Error fetching IP address:", error);
+      //         });
+      // });
+
+
+      let username = '';
+      
+      let promiseMessage = 'We will reply to your message as soon as possible.'; // Default promise message
+      
+      // Load previous messages from localStorage
+      function loadMessages() {
+          const chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+      
+          // Clear previous messages before loading new ones
+          const chatMessagesContainer = document.getElementById('chat-messages');
+          chatMessagesContainer.innerHTML = '';
+      
+          // Add all saved messages with their timestamps
+          chatMessages.forEach(({ user, message, timestamp }) => {
+              addUserMessage(message, user, timestamp);
+          });
+      }
+      
+      function toggleChat() {
+          const chatContainer = document.getElementById('chat-container');
+          chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
+      
+          // Load messages when chat is opened
+          if (chatContainer.style.display === 'block') {
+              loadMessages();
+          }
+      
+          // Check if a username is stored; if yes, skip the initial form
+          const storedUsername = localStorage.getItem('username');
+          if (storedUsername) {
+              username = storedUsername;
+              document.getElementById('initial-input-container').style.display = 'none';
+              document.getElementById('message-input').style.display = 'flex';
+          } else {
+              document.getElementById('initial-input-container').style.display = 'flex';
+          }
+      }
+      
+      function setUsernameAndMessageAndPromiseMessage() {
+          const usernameInput = document.getElementById('username').value.trim();
+          const messageInput = document.getElementById('initial-message').value.trim();
+      
+          if (usernameInput && messageInput) {
+              username = usernameInput;
+      
+              // Store the username and promise message in localStorage
+              localStorage.setItem('username', username);
+              localStorage.setItem('promiseMessage', promiseMessage);
+      
+              // Hide initial input container and show message input
+              document.getElementById('initial-input-container').style.display = 'none';
+              document.getElementById('message-input').style.display = 'flex';
+      
+              // Optionally, add a system message that the user has joined
+              addSystemMessage(`${username} has joined the chat.`);
+              
+              // Save the initial message from the user
+              sendMessage(messageInput);
+          }
+      }
+      
+      function sendMessage(userMessage) {
+          const messageInput = document.getElementById('message');
+          
+          // Use the provided userMessage or get it from the input field
+          const message = userMessage || messageInput.value.trim(); 
+      
+          if (message) { // Only proceed if the message is not empty
+              // Get the current time for the timestamp
+              const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+              // Append the message to the chat messages display area
+              addUserMessage(message, username, timestamp);
+      
+              // Save the user's message in localStorage
+              saveMessage(username, message, timestamp);
+      
+              // Clear the input field if using the input field directly
+              if (!userMessage) {
+                  messageInput.value = '';
+              }
+      
+              // System replies with the fixed promise message after a short delay
+              setTimeout(() => {
+                  addSystemMessage(promiseMessage);
+                  saveMessage('System', promiseMessage, timestamp); // Save the promise message as well
+              }, 1000); // Delay the system reply by 1 second
+      
+              // Scroll to the bottom of the chat messages
+              
+          }
+      }
+      
+      function addUserMessage(message, user = username, timestamp = '') {
+          const messageElement = document.createElement('p');
+          messageElement.className = 'user-message';
+      
+          // Display the message with the timestamp
+          messageElement.textContent = `${message} (${timestamp})`;
+      
+          // Append the message to the chat messages display area
+          const chatMessages = document.getElementById('chat-messages');
+          chatMessages.appendChild(messageElement);
+      }
+      
+      function addSystemMessage(message) {
+          const messageElement = document.createElement('p');
+          messageElement.className = 'system-message';
+          messageElement.textContent = message;
+      
+          // Append the message to the chat messages display area
+          const chatMessages = document.getElementById('chat-messages');
+          chatMessages.appendChild(messageElement);
+      
+          // Scroll to the bottom of the chat messages
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      // Save message to localStorage
+      function saveMessage(user, message, timestamp) {
+          const chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+      
+          // Push the new message with timestamp to the array
+          chatMessages.push({ user, message, timestamp });
+      
+          // Save back to localStorage
+          localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+      }
+      
+
+      
+
+      
+
+      
+
+
+// Function to send an email using EmailJS
+// function sendEmail(messageContent) {
+//     // Check if EmailJS is set up and initialized
+//     emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+//         username: username,
+//         message: messageContent
+//     })
+//     .then((response) => {
+//         console.log('Email sent successfully!', response.status, response.text);
+//     }, (error) => {
+//         console.error('Failed to send email. Error:', error);
+//     });
+// }
+
+
+
+
+    
