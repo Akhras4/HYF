@@ -283,8 +283,27 @@
 
     </main>
     <footer>
-
     </footer>
+    <aside>
+         <div id="chat-button" class="chat-button" onclick="toggleChat()">
+        💬
+    </div>
+
+    <div id="chat-container" class="chat-container">
+        <div id="chat-messages" class="chat-messages"></div>
+
+        <div id="initial-input-container" class="initial-input-container">
+            <input type="text" id="username" placeholder="Enter your username" required>
+            <input type="text" id="initial-message" placeholder="message" required>
+            <button onclick="setUsernameAndMessageAndPromiseMessage()">Join Chat</button>
+        </div>
+
+        <div id="message-input" class="message-input" style="display: none;">
+            <input type="text" id="message" placeholder="Type a message..." required>
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    </aside>
     <script src="components.js"></script>
     <!-- <script>
         window.addEventListener('scroll', () => {
