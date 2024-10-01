@@ -1,57 +1,57 @@
 
 class ImgComponent extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
 
-        const wrapper = document.createElement('div');
-        const className = this.getAttribute('class-name') || 'default-class';
-        const classImg = this.getAttribute('class');
-        wrapper.classList.add(className);
+    const wrapper = document.createElement('div');
+    const className = this.getAttribute('class-name') || 'default-class';
+    const classImg = this.getAttribute('class');
+    wrapper.classList.add(className);
 
-        const image = document.createElement('img');
-        const imgSrc = this.getAttribute('src') || 'default.jpg'; 
-        image.setAttribute('src', imgSrc);
-        image.alt = 'Image component'; 
+    const image = document.createElement('img');
+    const imgSrc = this.getAttribute('src') || 'default.jpg';
+    image.setAttribute('src', imgSrc);
+    image.alt = 'Image component';
 
-        const imgBg = document.createElement('div');
-        imgBg.classList.add('imageboxgradient');
+    const imgBg = document.createElement('div');
+    imgBg.classList.add('imageboxgradient');
 
-        const titleParagraphText = this.getAttribute('titlePargraph');
-        const titleParagraph = titleParagraphText ? document.createElement('p') : null;
-        if (titleParagraph) {
-            titleParagraph.classList.add('titleParagraphText');
-            titleParagraph.textContent = titleParagraphText;
-        }
+    const titleParagraphText = this.getAttribute('titlePargraph');
+    const titleParagraph = titleParagraphText ? document.createElement('p') : null;
+    if (titleParagraph) {
+      titleParagraph.classList.add('titleParagraphText');
+      titleParagraph.textContent = titleParagraphText;
+    }
 
-        const titleText = this.getAttribute('title');
-        const title = titleText ? document.createElement('h1') : null;
-        if (title) {
-            title.classList.add('titleText');
-            title.textContent = titleText;
-            if (classImg === 'videoComponent1 team') {
-                title.style.bottom = '0rem';
-            }else{
-              title.style.bottom = '0rem';
-            } 
-        }
+    const titleText = this.getAttribute('title');
+    const title = titleText ? document.createElement('h1') : null;
+    if (title) {
+      title.classList.add('titleText');
+      title.textContent = titleText;
+      if (classImg === 'videoComponent1 team') {
+        title.style.bottom = '0rem';
+      } else {
+        title.style.bottom = '0rem';
+      }
+    }
 
-        const paragraphText = this.getAttribute('paragraph');
-        const paragraph = paragraphText ? document.createElement('h3') : null;
-        if (paragraph) {
-            paragraph.classList.add('paragraph');
-            paragraph.textContent = paragraphText;
-        }
+    const paragraphText = this.getAttribute('paragraph');
+    const paragraph = paragraphText ? document.createElement('h3') : null;
+    if (paragraph) {
+      paragraph.classList.add('paragraph');
+      paragraph.textContent = paragraphText;
+    }
 
-        wrapper.append(image, imgBg);
-        if (titleParagraph) wrapper.appendChild(titleParagraph);
-        if (title) wrapper.appendChild(title);
-        if (paragraph) wrapper.appendChild(paragraph);
+    wrapper.append(image, imgBg);
+    if (titleParagraph) wrapper.appendChild(titleParagraph);
+    if (title) wrapper.appendChild(title);
+    if (paragraph) wrapper.appendChild(paragraph);
 
-        this.shadowRoot.appendChild(wrapper);
+    this.shadowRoot.appendChild(wrapper);
 
-        const style = document.createElement('style');
-        style.textContent = `
+    const style = document.createElement('style');
+    style.textContent = `
         :host{
         overflow: visible;
         }
@@ -157,73 +157,67 @@ class ImgComponent extends HTMLElement {
                    }
               
         `;
-        this.shadowRoot.appendChild(style);
-    }
+    this.shadowRoot.appendChild(style);
+  }
 }
 
 customElements.define('image-component', ImgComponent);
 
-
-
-
-
-
-
 class VideoCell extends HTMLElement {
   constructor() {
-      super();
-      this.attachShadow({ mode: 'open' });
+    super();
+    this.attachShadow({ mode: 'open' });
 
-      const wrapper = document.createElement('div');
-      const className = this.getAttribute('class-name') || 'default-class';
-      wrapper.classList.add(className);
+    const wrapper = document.createElement('div');
+    const className = this.getAttribute('class-name') || 'default-class';
+    wrapper.classList.add(className);
 
-      // Video element
-      const video = document.createElement('video');
-      const videoSrc = this.getAttribute('video-src') || 'default.mp4';
-      const posterSrc = this.getAttribute('poster-src') || 'default.jpg';
+    // Video element
+    const video = document.createElement('video');
+    const videoSrc = this.getAttribute('video-src') || 'default.mp4';
+    const posterSrc = this.getAttribute('poster-src') || 'default.jpg';
 
-      video.setAttribute('autoplay', '');
-      video.setAttribute('loop', '');
-      video.setAttribute('muted', '');
-      video.setAttribute('playsinline', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
 
-      const source = document.createElement('source');
-      source.setAttribute('src', videoSrc);
-      source.setAttribute('type', 'video/mp4');
-      video.appendChild(source);
+    const source = document.createElement('source');
+    source.setAttribute('src', videoSrc);
+    source.setAttribute('type', 'video/mp4');
+    video.appendChild(source);
 
-      const imgOverlay = document.createElement('img');
-      imgOverlay.classList.add('overlay');
-      imgOverlay.setAttribute('src', posterSrc);
-      imgOverlay.setAttribute('alt', 'Video Overlay');
+    const imgOverlay = document.createElement('img');
+    imgOverlay.classList.add('overlay');
+    imgOverlay.setAttribute('src', posterSrc);
+    imgOverlay.setAttribute('alt', 'Video Overlay');
 
-      // Only create the logo if logoSrc is provided
-      const logoSrc = this.getAttribute('logo-src');
-      if (logoSrc) {
-          const logo = document.createElement('img');
-          logo.classList.add('logo');
-          logo.setAttribute('src', logoSrc);
-          wrapper.appendChild(logo); // Append only if it exists
-      }
+    // Only create the logo if logoSrc is provided
+    const logoSrc = this.getAttribute('logo-src');
+    if (logoSrc) {
+      const logo = document.createElement('img');
+      logo.classList.add('logo');
+      logo.setAttribute('src', logoSrc);
+      wrapper.appendChild(logo); 
+    }
 
-      // Only create the company name if companyNameText is provided
-      const companyNameText = this.getAttribute('company-name');
-      if (companyNameText) {
-          const companyName = document.createElement('h2');
-          companyName.classList.add('companyName');
-          companyName.textContent = companyNameText;
-          wrapper.appendChild(companyName); // Append only if it exists
-      }
+    // Only create the company name if companyNameText is provided
+    const companyNameText = this.getAttribute('company-name');
+    if (companyNameText) {
+      const companyName = document.createElement('h2');
+      companyName.classList.add('companyName');
+      companyName.textContent = companyNameText;
+      wrapper.appendChild(companyName); 
+    }
 
-      const imgBg = document.createElement('div');
-      imgBg.classList.add('imageboxgradient');
+    const imgBg = document.createElement('div');
+    imgBg.classList.add('imageboxgradient');
 
-      wrapper.append(video, imgBg, imgOverlay); // Append only necessary elements
-      this.shadowRoot.appendChild(wrapper);
+    wrapper.append(video, imgBg, imgOverlay); 
+    this.shadowRoot.appendChild(wrapper);
 
-      const style = document.createElement('style');
-      style.textContent = `
+    const style = document.createElement('style');
+    style.textContent = `
           :host {
               --z-index-video: 1;
               --z-index-overlay: 3;
@@ -292,37 +286,31 @@ class VideoCell extends HTMLElement {
               color: white;
               margin: 0;
           }
-
-          @media (max-width: 450px) {
-              .video{
-                
-              }
-          }
       `;
-      this.shadowRoot.appendChild(style);
+    this.shadowRoot.appendChild(style);
 
-      const handleEvent = (event) => {
-          if (event.type === 'mouseover' || event.type === 'click') {
-              if (video.paused) {
-                  video.play();
-                  imgOverlay.style.display = 'none'; 
-              }
-          } else if (event.type === 'mouseout') {
-              if (!video.paused) {
-                  video.pause();
-                  imgOverlay.style.display = 'block';
-              }
-          }
-      };
+    const handleEvent = (event) => {
+      if (event.type === 'mouseover' || event.type === 'click') {
+        if (video.paused) {
+          video.play();
+          imgOverlay.style.display = 'none';
+        }
+      } else if (event.type === 'mouseout') {
+        if (!video.paused) {
+          video.pause();
+          imgOverlay.style.display = 'block';
+        }
+      }
+    };
 
-      const eventType = className === "videoComponenthover" ? "mouseover" : "click";
-      video.addEventListener(eventType, handleEvent);
-      if (className === "videoComponenthover") {
-          video.addEventListener("mouseout", handleEvent);
-      }
-      if (video.paused) {
-          imgOverlay.style.display = 'block'; 
-      }
+    const eventType = className === "videoComponenthover" ? "mouseover" : "click";
+    video.addEventListener(eventType, handleEvent);
+    if (className === "videoComponenthover") {
+      video.addEventListener("mouseout", handleEvent);
+    }
+    if (video.paused) {
+      imgOverlay.style.display = 'block';
+    }
   }
 }
 
@@ -332,17 +320,17 @@ customElements.define('video-cell', VideoCell);
 
 
 
-class Testside extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
+class Textside extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
 
-        const wrapper = document.createElement('div');
-        const className = this.getAttribute('class-name') || 'default-class';
-        wrapper.classList.add(className);
+    const wrapper = document.createElement('div');
+    const className = this.getAttribute('class-name') || 'default-class';
+    wrapper.classList.add(className);
 
-        const style = document.createElement('style');
-        style.textContent = `
+    const style = document.createElement('style');
+    style.textContent = `
             .titleParagraph{
                color: skyblue;
                font-size:clamp(0.9rem, 1.2rem, 1.4rem);
@@ -362,69 +350,64 @@ class Testside extends HTMLElement {
                   }
                }
         `;
-        this.shadowRoot.appendChild(style);
+    this.shadowRoot.appendChild(style);
 
-        const titleParagraph = document.createElement('p');
-        const titleTextParagraph = this.getAttribute('titleTextPargraph') ;
-        const titleTextParagraphClassName=titleParagraph.setAttribute('class','titleParagraph')
-        titleTextParagraph ?(titleParagraph.textContent = titleTextParagraph) :null
+    const titleParagraph = document.createElement('p');
+    const titleTextParagraph = this.getAttribute('titleTextPargraph');
+    const titleTextParagraphClassName = titleParagraph.setAttribute('class', 'titleParagraph')
+    titleTextParagraph ? (titleParagraph.textContent = titleTextParagraph) : null
 
-        
-        const title = document.createElement('h1');
-        const titleText = this.getAttribute('titleText') || 'Default Title';
-        title.textContent = titleText;
 
-        wrapper.appendChild(titleParagraph); 
-        wrapper.appendChild(title);
+    const title = document.createElement('h1');
+    const titleText = this.getAttribute('titleText') || 'Default Title';
+    title.textContent = titleText;
 
-        const descriptionText = this.getAttribute('descriptionText');
-        let descriptions = [];
+    wrapper.appendChild(titleParagraph);
+    wrapper.appendChild(title);
 
-        try {
-            descriptions = JSON.parse(descriptionText) || [];
-        } catch (error) {
-            console.error('Invalid JSON format for descriptionText:', error);
-        }
-        descriptions.forEach(text => {
-            const description = document.createElement('p');
-            description.textContent = text;
-            wrapper.appendChild(description);
-        });
-        this.shadowRoot.appendChild(wrapper);
+    const descriptionText = this.getAttribute('descriptionText');
+    let descriptions = [];
+
+    try {
+      descriptions = JSON.parse(descriptionText) || [];
+    } catch (error) {
+      console.error('Invalid JSON format for descriptionText:', error);
     }
+    descriptions.forEach(text => {
+      const description = document.createElement('p');
+      description.textContent = text;
+      wrapper.appendChild(description);
+    });
+    this.shadowRoot.appendChild(wrapper);
+  }
 }
 
 
-customElements.define('test-side', Testside);
+customElements.define('text-side', Textside);
+
+class BarTitle extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    const wrapper = document.createElement('div');
+    const className = this.getAttribute('class-name') || 'default-class';
+    wrapper.classList.add(className);
+
+    const titleParagraph = document.createElement('p');
+    const titleTextParagraph = this.getAttribute('titleTextPargraph');
+    const titleTextParagraphClassName = titleParagraph.setAttribute('class', 'titleParagraph')
+    titleTextParagraph ? (titleParagraph.textContent = titleTextParagraph) : null
 
 
+    const title = document.createElement('h1');
+    const titleText = this.getAttribute('titleText') || 'Default Title';
+    title.textContent = titleText;
 
-
-
-
-class VideoBarTitle  extends HTMLElement{
-    constructor() {
-        super();
-        this.attachShadow({mode: 'open'});
-        const wrapper = document.createElement('div');
-        const className = this.getAttribute('class-name') || 'default-class';
-        wrapper.classList.add(className);
-
-        const titleParagraph = document.createElement('p');
-        const titleTextParagraph = this.getAttribute('titleTextPargraph') ;
-        const titleTextParagraphClassName=titleParagraph.setAttribute('class','titleParagraph')
-        titleTextParagraph ?(titleParagraph.textContent = titleTextParagraph) :null
-
-        
-        const title = document.createElement('h1');
-        const titleText = this.getAttribute('titleText') || 'Default Title';
-        title.textContent = titleText;
-
-        wrapper.appendChild(titleParagraph); 
-        wrapper.appendChild(title);
-        this.shadowRoot.appendChild(wrapper);
-        const style = document.createElement('style');
-        style.textContent = `
+    wrapper.appendChild(titleParagraph);
+    wrapper.appendChild(title);
+    this.shadowRoot.appendChild(wrapper);
+    const style = document.createElement('style');
+    style.textContent = `
             :host {
                 display: flex;
                 margin: 16px;
@@ -461,16 +444,14 @@ class VideoBarTitle  extends HTMLElement{
                 
             }
         `;
-        this.shadowRoot.appendChild(style);
-    }
+    this.shadowRoot.appendChild(style);
+  }
 }
-customElements.define('video-bar-title', VideoBarTitle );
+customElements.define('bar-title', BarTitle);
 
 class Logo extends HTMLElement {
   constructor() {
     super();
-
-    // Create the component's template
     const template = document.createElement('template');
     template.innerHTML = `
          <div class="logo">
@@ -551,11 +532,9 @@ class Logo extends HTMLElement {
             </div>
 
    `;
-this.appendChild(template.content.cloneNode(true));
+    this.appendChild(template.content.cloneNode(true));
+  }
 }
-}
-
-
 customElements.define('custom-logo', Logo);
 
 
@@ -619,7 +598,7 @@ class CustomMenu extends HTMLElement {
     top: 80px;
     left: -600px;
     width: 1024px;
-    height: 500px;
+    height: 430px;
     background-color: #4e1c8d;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -715,12 +694,11 @@ class CustomMenu extends HTMLElement {
     }
   }
 </style>
-
       <div class="container">
         <div class="inner-element">
           <div class="fancy-inner-element "></div>
-          <div slide-hover="1" class="link-container" id="diensten">
-            <a href="/diensten/social-content/" aria-current="page" class="link-content" target="_self"
+          <div  class="link-container" id="diensten">
+            <a href="#" aria-current="page" class="link-content" target="_self"
               title="diensten">
               diensten
               <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" class="link-icon">
@@ -728,24 +706,24 @@ class CustomMenu extends HTMLElement {
               </svg>
             </a>
           </div>
-          <div slide-hover="1" class="link-container" id="join-liik">
-            <a href="/diensten/social-content/" aria-current="page" class="link-content" target="_self" title="join Liik">
+          <div  class="link-container" id="join-liik">
+            <a href="#" aria-current="page" class="link-content" target="_self" title="join Liik">
               join Liik 📸
               <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" class="link-icon">
                 <path d="M5.70711 4.29289L10 0C10 0 11.4142 1.41421 11.4142 1.41421L6.41422 6.41421C6.21785 6.61058 5.70711 7.13591 5.70711 7.13591C5.70711 7.13591 5.19416 6.60838 5 6.41421L0 1.41421C0 1.41421 1.41422 0 1.41422 0L5.70711 4.29289Z" fill="white"></path>
               </svg>
             </a>
             <ul class="unorder-list-join">
-              <li slide-hover="1" class="link-container"><a href="#vacature">Vacature</a></li>
-              <li slide-hover="1" class="link-container"><a href="#">Option 2</a></li>
+              <li  class="link-container"><a href="#vacature">Vacature</a></li>
+              <li  class="link-container"><a href="#">Option 2</a></li>
             </ul>
           </div>
-          <div slide-hover="1" class="link-container">
-            <a href="#Ons team van" aria-current="page" class="link-content" target="_self" title="Ons team">
+          <div  class="link-container">
+            <a href="#Ons--team--van" aria-current="page" class="link-content" target="_self" title="Ons team">
               Ons team
             </a>
           </div>
-          <div slide-hover="1" class="link-container">
+          <div  class="link-container">
             <a href="#contact" aria-current="page" class="link-content" target="_self" title="contact">
               contact
             </a>
@@ -757,37 +735,37 @@ class CustomMenu extends HTMLElement {
             <div class="fancy-inner-element-menue "></div>
             <div class="menue-continer left">
               <h1>Social content</h1>
-              <div slide-hover="1" class="menue-items">
-                <div slide-hover="1" class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Socialcontent">Social content</a></div>
-                <div slide-hover="1" class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Markiting">Markiting</a></div>
-                <div slide-hover="1" class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Content">Content</a></div>
-                <div slide-hover="1" class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Standout">Stand out</a></div>
+              <div  class="menue-items">
+                <div  class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Socialcontent">Social content</a></div>
+                <div  class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Markiting">Markiting</a></div>
+                <div  class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Content">Content</a></div>
+                <div  class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Standout">Stand out</a></div>
               </div>
             </div>
-            <div slide-hover="2" class="menue-continer ">
+            <div  class="menue-continer ">
               <h1>Expertises</h1>
-              <div slide-hover="1" class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Expertises">
+              <div  class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Expertises">
                 <hgroup>
                   <h1>Snackable Content</h1>
                   <p>Content is tegenwoordig vluchtig, kort en krachtig. Wij maken jouw visuele snacks op een efficiënte manier.</p>
                 </hgroup>
               </a></div>
-              <div slide-hover="1" class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Trends">
+              <div  class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Trends">
                 <hgroup>
                   <h1>Trends & innovaties</h1>
                   <p>Waar is jouw doelgroep en wat doen ze? Wij houden de nieuwste trends in de gaten en zorgen ervoor dat je vooroploopt.</p>
                 </hgroup>
               </a></div>
             </div>
-            <div slide-hover="3" class="menue-continer" style="margin-right: 1rem;">
+            <div  class="menue-continer" style="margin-right: 1rem;">
               <h1>Social creatives</h1>
-              <div slide-hover="3" class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Socialcreatives">
+              <div  class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Socialcreatives">
                 <hgroup>
                   <h1>Short-form content</h1>
                   <p>Content is tegenwoordig vluchtig, kort en krachtig. Wij maken short-form content op een efficiënte manier.</p>
                 </hgroup>
               </a></div>
-              <div slide-hover="3" class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Socialmedia">
+              <div  class="link-container"><a aria-current="page" class="link-content" target="_self" href="#Socialmedia">
                 <hgroup>
                   <h1>Social media beheer</h1>
                   <p>De content is er, en nu? Natuurlijk plaatsen we dit op de juiste kanalen, zodat jouw doelgroep het ziet.</p>
@@ -802,23 +780,20 @@ class CustomMenu extends HTMLElement {
     this.appendChild(template.content.cloneNode(true));
   }
 }
-
-
 customElements.define('custom-menu', CustomMenu);
 
-  // MobileNavbar.js
+// MobileNavbar.js
 class MobileNavbar extends HTMLElement {
-    constructor() {
-      super();
-      this.attachShadow({ mode: 'open' });
-      this.render();
-      this.addEventListeners();
-    }
-  
-    render() {
-        this.shadowRoot.innerHTML = `
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.render();
+    this.addEventListeners();
+  }
+
+  render() {
+    this.shadowRoot.innerHTML = `
         <style>
-  
           .navbar-container {
             position: relative;
             display: none;
@@ -894,7 +869,7 @@ class MobileNavbar extends HTMLElement {
           }
   
           .line {
-            width: 1.375rem;
+            width: 1.5rem;
             height: 2px;
             background: white;
             transition: transform var(--nav-transition-duration) ease-in-out;
@@ -909,19 +884,20 @@ class MobileNavbar extends HTMLElement {
           }
   
           .nav-menu {
-            margin-top: 2.5rem;
+            margin-top:4rem;
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            width:100vw
           }
   
           .dropdown {
-            width: 100%;
+            width: 95%;
           }
   
           .dropdown-title {
-            padding: 0.75rem 1.5rem;
-            width: 100%;
+            padding: 1rem 1.5rem;
+            width: 90%;
             background: var(--nav-dropdown-bg-color);
             color: var(--nav-text-color);
             font-size: 1rem;
@@ -941,6 +917,7 @@ class MobileNavbar extends HTMLElement {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease-in-out;
+            
           }
   
           .dropdown-content.active {
@@ -948,14 +925,15 @@ class MobileNavbar extends HTMLElement {
           }
   
           .dropdown-content a {
+          width: 90%;
             display: block;
-            padding: 0.75rem 1.5rem;
-            width: 100%;
+            padding: 1rem 1.5rem;
             background: var(--nav-dropdown-bg-color);
             color: var(--nav-text-color);
             border-radius: 9999px;
             text-decoration: none;
             transition: background var(--nav-transition-duration) ease;
+            margin-top: 1rem;
           }
   
           .dropdown-content a:hover {
@@ -963,8 +941,8 @@ class MobileNavbar extends HTMLElement {
           }
   
           .nav-link {
-            padding: 0.75rem 1.5rem;
-            width: 100%;
+            padding: 1rem 1.5rem;
+            width: 90%;
             background: var(--nav-dropdown-bg-color);
             color: var(--nav-text-color);
             font-size: 1rem;
@@ -988,7 +966,7 @@ class MobileNavbar extends HTMLElement {
             @media (max-width: 450px) {
             .open-nav-button {
             position: fixed;
-                top: 25px;
+                top: 10px;
                 right: 15px;
                 }
           }
@@ -1017,89 +995,90 @@ class MobileNavbar extends HTMLElement {
                   </svg>
                 </div>
                 <div class="dropdown-content" id="dropdown-diensten">
-                  <a href="/thema/">Uitdagingen</a>
-                  <a href="/thema/digitale-transformatie/">digitale transformatie</a>
+                  <a href="#">Social content</a>
+                  <a href="#">Social creatives</a>
+                  <a href="#">Expertises</a>
                 </div>
               </div>
               <div class="dropdown">
-                <div class="dropdown-title" data-dropdown="over-ons">
-                  over ons
+                <div class="dropdown-title" data-dropdown="join Liik ">
+                  join Liik 📸
                   <svg class="dropdown-icon" width="12" height="8" viewBox="0 0 12 8" fill="none">
                     <path d="M5.70711 4.29289L10 1.68643e-08C10 1.68642e-08 11.4142 1.41421 11.4142 1.41421L6.41422 6.41421C6.21785 6.61058 5.70711 7.13591 5.70711 7.13591C5.70711 7.13591 5.19416 6.60838 5 6.41421L1.92421e-06 1.41421C1.92421e-06 1.41421 1.41422 1.19249e-07 1.41422 1.19249e-07L5.70711 4.29289Z" fill="white"></path>
                   </svg>
                 </div>
-                <div class="dropdown-content" id="dropdown-over-ons">
-                  <a href="/over-ons/">over ons</a>
+                <div class="dropdown-content" id="dropdown-vacature">
+                  <a href="#">vacature</a>
                 </div>
               </div>
-              <a href="/work-hard-play-harder/" class="nav-link">jobs</a>
-              <a href="/contact/" class="nav-link">contact</a>
+              <a href="#" class="nav-link">Ons team</a>
+              <a href="#" class="nav-link">contact</a>
             </nav>
           </div>
         </div>
       `;
+  }
+
+  addEventListeners() {
+    this.shadowRoot.querySelector('.open-nav-button').addEventListener('click', () => {
+      this.openNav();
+    });
+    this.shadowRoot.querySelector('.close-nav').addEventListener('click', () => {
+      this.closeNav();
+    });
+    this.shadowRoot.querySelectorAll('.dropdown-title').forEach(title => {
+      title.addEventListener('click', (e) => {
+        const id = e.currentTarget.dataset.dropdown;
+        this.toggleDropdown(id);
+      });
+    });
+  }
+
+  openNav() {
+    this.shadowRoot.querySelector('.nav-overlay').classList.add('active');
+  }
+
+  closeNav() {
+    this.shadowRoot.querySelector('.nav-overlay').classList.remove('active');
+  }
+
+  toggleDropdown(id) {
+    const content = this.shadowRoot.getElementById(`dropdown-${id}`);
+    if (content) {
+      content.classList.toggle('active');
     }
-  
-    addEventListeners() {
-        this.shadowRoot.querySelector('.open-nav-button').addEventListener('click', () => {
-          this.openNav();
-        });
-        this.shadowRoot.querySelector('.close-nav').addEventListener('click', () => {
-          this.closeNav();
-        });
-        this.shadowRoot.querySelectorAll('.dropdown-title').forEach(title => {
-          title.addEventListener('click', (e) => {
-            const id = e.currentTarget.dataset.dropdown;
-            this.toggleDropdown(id);
-          });
-        });
-      }
-    
-      openNav() {
-        this.shadowRoot.querySelector('.nav-overlay').classList.add('active');
-      }
-    
-      closeNav() {
-        this.shadowRoot.querySelector('.nav-overlay').classList.remove('active');
-      }
-    
-      toggleDropdown(id) {
-        const content = this.shadowRoot.getElementById(`dropdown-${id}`);
-        if (content) {
-          content.classList.toggle('active');
-        }
-      }
-    }
-    customElements.define('mobile-navbar', MobileNavbar);
-    
+  }
+}
+customElements.define('mobile-navbar', MobileNavbar);
 
 
-    class BtnSocialMedia extends HTMLElement {
-      constructor() {
-        super();
-        
-        const shadow = this.attachShadow({ mode: 'open' });
 
-        const button = document.createElement('button');
-        button.classList.add('btnSocialMedia', this.getAttribute('type'));
-    
+class BtnSocialMedia extends HTMLElement {
+  constructor() {
+    super();
 
-        const fancyDiv = document.createElement('div');
-        fancyDiv.classList.add('fancy', this.getAttribute('type'));
-    
+    const shadow = this.attachShadow({ mode: 'open' });
 
-        const img = document.createElement('img');
-        img.src = this.getAttribute('src');
-        img.alt = this.getAttribute('alt') || 'Social Media Icon';
-    
+    const button = document.createElement('button');
+    button.classList.add('btnSocialMedia', this.getAttribute('type'));
 
-        button.appendChild(fancyDiv);
-        button.appendChild(img);
-        shadow.appendChild(button);
-    
 
-        const style = document.createElement('style');
-        style.textContent = `
+    const fancyDiv = document.createElement('div');
+    fancyDiv.classList.add('fancy', this.getAttribute('type'));
+
+
+    const img = document.createElement('img');
+    img.src = this.getAttribute('src');
+    img.alt = this.getAttribute('alt') || 'Social Media Icon';
+
+
+    button.appendChild(fancyDiv);
+    button.appendChild(img);
+    shadow.appendChild(button);
+
+
+    const style = document.createElement('style');
+    style.textContent = `
           .btnSocialMedia {
               background-color: white;
               width: var(--btn-size, 60px);
@@ -1170,44 +1149,43 @@ class MobileNavbar extends HTMLElement {
               cursor:pointer;
           }
         `;
-    
-        shadow.appendChild(style);
-        const gradientDeg = this.getAttribute('conic-gradient-deg');
+
+    shadow.appendChild(style);
+    const gradientDeg = this.getAttribute('conic-gradient-deg');
     if (gradientDeg) {
       this.style.setProperty('--conic-gradient-deg', gradientDeg);
     }
-      }
-    }
-    
-    customElements.define('btn-social-media', BtnSocialMedia);
-    
-    
-    class ContactInfo extends HTMLElement {
-      constructor() {
-        super();
-        const shadow = this.attachShadow({ mode: 'open' });
-        const template = document.createElement('template');
-        template.innerHTML = `
+  }
+}
+
+customElements.define('btn-social-media', BtnSocialMedia);
+
+
+class ContactInfo extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
+    const template = document.createElement('template');
+    template.innerHTML = `
           <style>
             .contact-component {
                 display: flex;
-                align-items: center;
                 justify-content: space-around;
-                padding: 20px; 
-                height: 90vh; 
+                padding: 20px;
+                max-width:2000px;
+                max-height: 700px; 
             }
   
             .contact-info {
                 max-width: 50%;
                padding:55px;
-              max-height: 80vh;
               display: flex;
               justify-items: flex-start;
               flex-direction: column;
             }
   
             .contact-info h1 ,h2 {
-                font-size: 2rem; 
+                font-size: 1.5rem; 
                 color: #ffff;
             }
   
@@ -1216,27 +1194,31 @@ class MobileNavbar extends HTMLElement {
                 font-size: 1rem; 
                 color: #666; 
             }
+                .social-media{
+                margin-top:2rem;
+                align-items:flex-start;
+                } 
                 @media (max-width: 1200px) {
-    .contact-info h1, 
-    .contact-info h2 {
-        font-size: 1.75rem; 
-    }
+              .contact-info h1, 
+              .contact-info h2 {
+                  font-size: 1.3rem; 
+              }
 
-    .contact-info p {
-        font-size: 0.9rem; 
-    }
-}
+              .contact-info p {
+                  font-size: 0.9rem; 
+              }
+          }
 
-    @media (max-width: 900px) {
-      .contact-info h1, 
-      .contact-info h2 {
-          font-size: 1.2rem; 
-      }
+        @media (max-width: 900px) {
+          .contact-info h1, 
+          .contact-info h2 {
+              font-size: 1.2rem; 
+          }
 
-      .contact-info p {
+         .contact-info p {
           font-size: 0.8rem; 
-        }
-      }
+         }
+       }
 
     @media (max-width: 600px) {
         .contact-info h1, 
@@ -1246,59 +1228,52 @@ class MobileNavbar extends HTMLElement {
 
         .contact-info p {
             font-size: 0.75rem; 
+          }
         }
-    }
   
-            .contact-info a {
+        .contact-info a {
                 color: white; 
                 text-decoration: none;
-            }
+        }
   
-            .contact-info a:hover {
-                  filter: drop-shadow(0 0 0.75rem rgb(160, 0, 210));
-            }
+        .contact-info a:hover {
+                filter: drop-shadow(0 0 0.75rem rgb(160, 0, 210));
+        }
   
-            .contact-image {
-               max-width: 50%;
-                 height: 90vh;
-                align-self:flex-end;
-            }
-  
-            .contact-image img {
+        .contact-image {
+                max-width: 50%;
+                
+        }
+        .contact-image img {
                 width: 100%;
                 height: 70vh;
+                max-height: 600px;
                 border-radius: 10px; 
                 object-fit: cover; 
-            }
-                .social-media {
-                  margin-top: 100px;
-                  display: flex;
-                  gap: 80px;
-                  max-width:50vw;
-              }
-                  @media (max-width:650px){
+        }   
+                          
+        @media (max-width:650px){
                   .social-media{
                       gap: 43px
-                          }
                   }
-                  .address{
+        }
+        .address{
                   display:flex;
                   flex-direction:column;
-                  }
-                  .addressimage{
+       }
+        .addressimage{
                   align-self:end;
                   position: relative;
                   display: inline-block;
-                  }
-
-                  .addressimage img {
+        }
+        .addressimage img {
                       border: 2px solid black;
                       border-radius: 30px;
                       width:30vw;
-                      max-width:400px
-                    }
+                      max-width:300px
+       }
 
-                  .addressimage .overlay {
+       .addressimage .overlay {
                       position: absolute;
                       top: 0;
                       left: 0;
@@ -1313,13 +1288,16 @@ class MobileNavbar extends HTMLElement {
                       justify-content: center; 
                       color: white; 
                       font-size: 18px; 
-                  }
+        }
 
-                  .addressimage:hover .overlay {
+       .addressimage:hover .overlay {
                       opacity: 1; 
-                  }
+        }
           </style>
           <div class="contact-component">
+          <div class="social-media">
+                    <slot name="social-media"></slot>
+                  </div>
               <div class="contact-info">
                   <h1>Contact</h1>
                   <h2>Email: <a href="mailto:abdoakhras4@gmail.com">abdoakhras4@gmail.com</a></h2>
@@ -1339,255 +1317,219 @@ class MobileNavbar extends HTMLElement {
                       <img src="https://hyfassinment.s3.amazonaws.com/asset/address/address.PNG"  alt="De Gildekamp 2311, Nijmegen" >
                     </a>
                     </div>
-                  <div class="social-media">
-                    <slot name="social-media"></slot>
-                  </div>
+                  
               </div>
+              
               <div class="contact-image">
                   <img src="https://hyfassinment.s3.amazonaws.com/asset/s2_2.webp" alt="Contact Image">
               </div>
           </div>
         `;
-        
-
-        shadow.appendChild(template.content.cloneNode(true));
-      }
-    }
-  
-
-    customElements.define('contact-info', ContactInfo);
-    
-
-    
+    shadow.appendChild(template.content.cloneNode(true));
+  }
+}
+customElements.define('contact-info', ContactInfo);
 
 
-let timeleave; 
+
+
+
+let timeleave;
 
 document.querySelector('#diensten').addEventListener('mouseenter', () => {
-    document.querySelector('.menue-display').style.display = 'block';
-    clearTimeout(timeleave); 
+  document.querySelector('.menue-display').style.display = 'block';
+  clearTimeout(timeleave);
 });
 
 document.querySelector('.menue-display').addEventListener('mouseenter', () => {
-    document.querySelector('.menue-display').style.display = 'block';
-    clearTimeout(timeleave); 
+  document.querySelector('.menue-display').style.display = 'block';
+  clearTimeout(timeleave);
 });
 
 document.querySelector('#diensten').addEventListener('mouseleave', () => {
-    timeleave = setTimeout(() => {
-        document.querySelector('.menue-display').style.display = 'none';
-    }, 100); 
+  timeleave = setTimeout(() => {
+    document.querySelector('.menue-display').style.display = 'none';
+  }, 100);
 });
 
 document.querySelector('.menue-display').addEventListener('mouseleave', () => {
-    timeleave = setTimeout(() => {
-        document.querySelector('.menue-display').style.display = 'none';
-    }, 100); 
+  timeleave = setTimeout(() => {
+    document.querySelector('.menue-display').style.display = 'none';
+  }, 100);
 });
-let timeleaveJoin; 
+let timeleaveJoin;
 
 document.querySelector('#join-liik').addEventListener('mouseenter', () => {
-    document.querySelector('.unorder-list-join').style.display = 'block';
-    clearTimeout(timeleaveJoin); 
+  document.querySelector('.unorder-list-join').style.display = 'block';
+  clearTimeout(timeleaveJoin);
 });
 
 document.querySelector('.unorder-list-join').addEventListener('mouseenter', () => {
-    document.querySelector('.unorder-list-join').style.display = 'block';
-    clearTimeout(timeleaveJoin); 
+  document.querySelector('.unorder-list-join').style.display = 'block';
+  clearTimeout(timeleaveJoin);
 });
 
 document.querySelector('#join-liik').addEventListener('mouseleave', () => {
-    timeleaveJoin = setTimeout(() => {
-        document.querySelector('.unorder-list-join').style.display = 'none';
-    }, 100); 
+  timeleaveJoin = setTimeout(() => {
+    document.querySelector('.unorder-list-join').style.display = 'none';
+  }, 100);
 });
 
 document.querySelector('.unorder-list-join').addEventListener('mouseleave', () => {
-    timeleaveJoin = setTimeout(() => {
-        document.querySelector('.unorder-list-join').style.display = 'none';
-    }, 100); 
+  timeleaveJoin = setTimeout(() => {
+    document.querySelector('.unorder-list-join').style.display = 'none';
+  }, 100);
 });
 
 
 const nodelist = document.querySelectorAll('.videoComponent1')
-        console.log(nodelist)
-        nodelist.forEach((node, index) => {
-            node.style.alignSelf = index % 2 ? 'flex-end' : 'flex-start';
+console.log(nodelist)
+nodelist.forEach((node, index) => {
+  node.style.alignSelf = index % 2 ? 'flex-end' : 'flex-start';
 
-        })
-        const nodelistExpertises = document.querySelectorAll('.videoComponent1.Expertises')
-        console.log(nodelistExpertises)
-        nodelistExpertises.forEach((node, index) => {
-            node.style.alignSelf = index % 2 ? 'center' : 'flex-start';
-            node.style.marginTop = index % 2 ? '-2rem' : '0';
+})
+const nodelistExpertises = document.querySelectorAll('.videoComponent1.Expertises')
+console.log(nodelistExpertises)
+nodelistExpertises.forEach((node, index) => {
+  node.style.alignSelf = index % 2 ? 'center' : 'flex-start';
+  node.style.marginTop = index % 2 ? '-2rem' : '0';
 
-        })
-      //   document.addEventListener("DOMContentLoaded", function() {
-      //     // Fetch the IP address from the API
-      //     fetch("https://api.ipify.org?format=json")
-      //         .then(response => response.json())
-      //         .then(data => {
-      //             // Display the IP address on the screen
-      //             alert(data.ip);
-      //         })
-      //         .catch(error => {
-      //             console.error("Error fetching IP address:", error);
-      //         });
-      // });
+})
 
 
-      let username = '';
-      
-      let promiseMessage = 'We will reply to your message as soon as possible.'; // Default promise message
-      
-      // Load previous messages from localStorage
-      function loadMessages() {
-          const chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
-      
-          // Clear previous messages before loading new ones
-          const chatMessagesContainer = document.getElementById('chat-messages');
-          chatMessagesContainer.innerHTML = '';
-      
-          // Add all saved messages with their timestamps
-          chatMessages.forEach(({ user, message, timestamp }) => {
-              addUserMessage(message, user, timestamp);
-          });
-      }
-      
-      function toggleChat() {
-          const chatContainer = document.getElementById('chat-container');
-          chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
-      
-          // Load messages when chat is opened
-          if (chatContainer.style.display === 'block') {
-              loadMessages();
-          }
-      
-          // Check if a username is stored; if yes, skip the initial form
-          const storedUsername = localStorage.getItem('username');
-          if (storedUsername) {
-              username = storedUsername;
-              document.getElementById('initial-input-container').style.display = 'none';
-              document.getElementById('message-input').style.display = 'flex';
-          } else {
-              document.getElementById('initial-input-container').style.display = 'flex';
-          }
-      }
-      
-      function setUsernameAndMessageAndPromiseMessage() {
-          const usernameInput = document.getElementById('username').value.trim();
-          const messageInput = document.getElementById('initial-message').value.trim();
-      
-          if (usernameInput && messageInput) {
-              username = usernameInput;
-      
-              // Store the username and promise message in localStorage
-              localStorage.setItem('username', username);
-              localStorage.setItem('promiseMessage', promiseMessage);
-      
-              // Hide initial input container and show message input
-              document.getElementById('initial-input-container').style.display = 'none';
-              document.getElementById('message-input').style.display = 'flex';
-      
-              // Optionally, add a system message that the user has joined
-              addSystemMessage(`${username} has joined the chat.`);
-              
-              // Save the initial message from the user
-              sendMessage(messageInput);
-          }
-      }
-      
-      function sendMessage(userMessage) {
-          const messageInput = document.getElementById('message');
-          
-          // Use the provided userMessage or get it from the input field
-          const message = userMessage || messageInput.value.trim(); 
-      
-          if (message) { // Only proceed if the message is not empty
-              // Get the current time for the timestamp
-              const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      
-              // Append the message to the chat messages display area
-              addUserMessage(message, username, timestamp);
-      
-              // Save the user's message in localStorage
-              saveMessage(username, message, timestamp);
-      
-              // Clear the input field if using the input field directly
-              if (!userMessage) {
-                  messageInput.value = '';
-              }
-      
-              // System replies with the fixed promise message after a short delay
-              setTimeout(() => {
-                  addSystemMessage(promiseMessage);
-                  saveMessage('System', promiseMessage, timestamp); // Save the promise message as well
-              }, 1000); // Delay the system reply by 1 second
-      
-              // Scroll to the bottom of the chat messages
-              
-          }
-      }
-      
-      function addUserMessage(message, user = username, timestamp = '') {
-          const messageElement = document.createElement('p');
-          messageElement.className = 'user-message';
-      
-          // Display the message with the timestamp
-          messageElement.textContent = `${message} (${timestamp})`;
-      
-          // Append the message to the chat messages display area
-          const chatMessages = document.getElementById('chat-messages');
-          chatMessages.appendChild(messageElement);
-      }
-      
-      function addSystemMessage(message) {
-          const messageElement = document.createElement('p');
-          messageElement.className = 'system-message';
-          messageElement.textContent = message;
-      
-          // Append the message to the chat messages display area
-          const chatMessages = document.getElementById('chat-messages');
-          chatMessages.appendChild(messageElement);
-      
-          // Scroll to the bottom of the chat messages
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
-      
-      // Save message to localStorage
-      function saveMessage(user, message, timestamp) {
-          const chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
-      
-          // Push the new message with timestamp to the array
-          chatMessages.push({ user, message, timestamp });
-      
-          // Save back to localStorage
-          localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
-      }
-      
+let username = '';
 
-      
+let promiseMessage = 'We will reply to your message as soon as possible.'; // Default promise message
 
-      
+// Load previous messages from localStorage
+function loadMessages() {
+  const chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
 
-      
+  // Clear previous messages before loading new ones
+  const chatMessagesContainer = document.getElementById('chat-messages');
+  chatMessagesContainer.innerHTML = '';
 
+  // Add all saved messages with their timestamps
+  chatMessages.forEach(({ user, message, timestamp }) => {
+    addUserMessage(message, user, timestamp);
+  });
+}
 
-// Function to send an email using EmailJS
-// function sendEmail(messageContent) {
-//     // Check if EmailJS is set up and initialized
-//     emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-//         username: username,
-//         message: messageContent
-//     })
-//     .then((response) => {
-//         console.log('Email sent successfully!', response.status, response.text);
-//     }, (error) => {
-//         console.error('Failed to send email. Error:', error);
-//     });
-// }
+function toggleChat() {
+  const chatContainer = document.getElementById('chat-container');
+  chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
 
+  // Load messages when chat is opened
+  if (chatContainer.style.display === 'block') {
+    loadMessages();
+  }
 
+  // Check if a username is stored; if yes, skip the initial form
+  const storedUsername = localStorage.getItem('username');
+  if (storedUsername) {
+    username = storedUsername;
+    document.getElementById('initial-input-container').style.display = 'none';
+    document.getElementById('message-input').style.display = 'flex';
+  } else {
+    document.getElementById('initial-input-container').style.display = 'flex';
+  }
+}
 
+function setUsernameAndMessageAndPromiseMessage() {
+  const usernameInput = document.getElementById('username').value.trim();
+  const messageInput = document.getElementById('initial-message').value.trim();
 
-    
+  if (usernameInput && messageInput) {
+    username = usernameInput;
+
+    // Store the username and promise message in localStorage
+    localStorage.setItem('username', username);
+    localStorage.setItem('promiseMessage', promiseMessage);
+
+    // Hide initial input container and show message input
+    document.getElementById('initial-input-container').style.display = 'none';
+    document.getElementById('message-input').style.display = 'flex';
+
+    // Optionally, add a system message that the user has joined
+    addSystemMessage(`${username} has joined the chat.`);
+
+    // Save the initial message from the user
+    sendMessage(messageInput);
+  }
+}
+
+function sendMessage(userMessage) {
+  const messageInput = document.getElementById('message');
+
+  // Use the provided userMessage or get it from the input field
+  const message = userMessage || messageInput.value.trim();
+
+  if (message) { // Only proceed if the message is not empty
+    // Get the current time for the timestamp
+    const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    // Append the message to the chat messages display area
+    addUserMessage(message, username, timestamp);
+
+    // Save the user's message in localStorage
+    saveMessage(username, message, timestamp);
+
+    // Clear the input field if using the input field directly
+    if (!userMessage) {
+      messageInput.value = '';
+    }
+
+    // System replies with the fixed promise message after a short delay
+    setTimeout(() => {
+      addSystemMessage(promiseMessage);
+      saveMessage('System', promiseMessage); // Save the promise message as well
+    }, 1000); // Delay the system reply by 1 second
+
+    // Scroll to the bottom of the chat messages
+    const chatMessages = document.getElementById('chat-messages');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+}
+
+function addUserMessage(message, user = username, timestamp = '') {
+
+  const messageElement = document.createElement('p');
+  const timestampOfMessage = document.createElement('p');
+  if (message === promiseMessage) {
+    messageElement.className = 'system-message';
+  } else {
+    messageElement.className = 'user-message';
+    timestampOfMessage.className = 'time-message'
+  }
+  // Display the message with the timestamp
+  messageElement.textContent = `${message} `;
+  timestampOfMessage.textContent = `${timestamp}`
+
+  // Append the message to the chat messages display area
+  const chatMessages = document.getElementById('chat-messages');
+  chatMessages.appendChild(messageElement);
+  chatMessages.appendChild(timestampOfMessage);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function addSystemMessage(message) {
+  const messageElement = document.createElement('p');
+  messageElement.className = 'system-message';
+  messageElement.textContent = message;
+
+  // Append the message to the chat messages display area
+  const chatMessages = document.getElementById('chat-messages');
+  chatMessages.appendChild(messageElement);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Save message to localStorage
+function saveMessage(user, message, timestamp) {
+  const chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+
+  // Push the new message with timestamp to the array
+  chatMessages.push({ user, message, timestamp });
+
+  // Save back to localStorage
+  localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+}
